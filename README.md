@@ -1,6 +1,6 @@
 ![DreamTeam](https://github.com/cp274-b4/dreamteam/assets/117794122/92ddb7a4-b50b-4adf-ae21-0f3359b1a1e4)
 
-**# dreamteam - Henry Howe, Sebastian Olson, Conor Wellman, Ben Hancock-Song
+DreamTeam - Henry Howe, Sebastian Olson, Conor Wellman, Ben Hancock-Song
 
 Mission Statement:
 Bringing collaboration to fitness

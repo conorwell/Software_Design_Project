@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+<<<<<<< HEAD
+=======
+import java.util.Date;
+>>>>>>> origin
 
 public class Add_Workout {
     private ArrayList<String> exercises;
@@ -7,14 +11,27 @@ public class Add_Workout {
     private String username;
     private String totalDuration;
     private String workoutName;
+<<<<<<< HEAD
 
 
     public ArrayList<String> addExercise(String user, String wrkName, ArrayList<String> exerc, ArrayList<String> exerDur) {
+=======
+    private String workoutComment;
+    private String date;
+
+
+    public ArrayList<String> addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
+>>>>>>> origin
         ArrayList<String> new_exercise = new ArrayList<String>();
         this.username = user;
         this.durations = exerDur;
         this.exercises = exerc;
         this.workoutName = wrkName;
+<<<<<<< HEAD
+=======
+        this.workoutComment = comment;
+        this.date = date;
+>>>>>>> origin
         int total = 0;
 
         for(String s : exerDur){
@@ -26,6 +43,12 @@ public class Add_Workout {
 
         new_exercise.add(username);
         new_exercise.add(totalDuration);
+<<<<<<< HEAD
+=======
+        new_exercise.add(workoutComment);
+        new_exercise.add(date);
+
+>>>>>>> origin
 
         for(int i =0; i<exercises.size(); i++){
             new_exercise.add(exercises.get(i));
@@ -36,7 +59,11 @@ public class Add_Workout {
             System.out.println(s);
         }
         Workout_Model mod = new Workout_Model();
+<<<<<<< HEAD
         mod.addWorkouts(username, workoutName, totalDuration, exercises, durations);
+=======
+        mod.addWorkouts(username, workoutName, workoutComment, totalDuration, date, exercises, durations);
+>>>>>>> origin
         return new_exercise;
     }
 }

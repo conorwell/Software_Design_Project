@@ -1,8 +1,20 @@
+<<<<<<< HEAD
+=======
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
+
+>>>>>>> origin
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.Date;
+import java.util.Properties;
+>>>>>>> origin
 
 public class Add_Workout_GUI extends JFrame implements ActionListener {
     private JTextField  workoutName;
@@ -14,6 +26,11 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
     private ArrayList<String> durationArr = new ArrayList<String>();;
     private String workName;
     private String username = "filler";
+<<<<<<< HEAD
+=======
+    private String comment;
+    private Date date;
+>>>>>>> origin
 
 
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
@@ -29,14 +46,21 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
         //Instructions for name
         JLabel workLabel = new JLabel("Enter Name of Workout:");
+<<<<<<< HEAD
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
+=======
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+>>>>>>> origin
         gbc.insets =new Insets(5,5,0,5);
         f.add(workLabel,gbc);
 
         //Textfield for name
         workoutName = new JTextField("");
+<<<<<<< HEAD
             gbc.gridx = 1;
             gbc.gridy = 1;
             gbc.gridwidth = 4;
@@ -48,6 +72,43 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
             gbc.gridx = 0;
             gbc.gridy = 2;
             gbc.gridwidth = 2;
+=======
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            f.add(workoutName, gbc);
+
+
+        //Instructions for name
+        JLabel dateLabel = new JLabel("Select Date of Workout:");
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            gbc.gridwidth = 1;
+            gbc.insets =new Insets(5,5,0,5);
+            f.add(dateLabel,gbc);
+
+
+            //this comes from external code
+            //this is a date picker
+            //https://sourceforge.net/projects/jdatepicker/files/latest/download
+        UtilDateModel model = new UtilDateModel();
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            gbc.gridwidth = 1;
+            Properties p = new Properties();
+            p.put("text.today", "Today");
+            p.put("text.month", "Month");
+            p.put("text.year", "Year");
+            JDatePanelImpl datePanel = new JDatePanelImpl(model,p);
+            JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+            f.add(datePicker, gbc);
+
+            //label for exercise input
+        JLabel exLabel = new JLabel("Enter Exercise");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+>>>>>>> origin
             gbc.insets =new Insets(5,5,0,5);
             f.add(exLabel,gbc);
 
@@ -55,28 +116,45 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         exerciseEntry = new JTextField("");
             gbc.gridx = 0;
             gbc.gridy = 3;
+<<<<<<< HEAD
             gbc.gridwidth = 2;
+=======
+            gbc.gridwidth = 1;
+>>>>>>> origin
             gbc.insets =new Insets(0,5,5,5);
             gbc.fill = GridBagConstraints.HORIZONTAL;
             f.add(exerciseEntry, gbc);
 
             //label for duration textfield
         JLabel durLabel = new JLabel(" Enter Duration of workout");
+<<<<<<< HEAD
             gbc.gridx = 2;
             gbc.gridy = 2;
             gbc.gridwidth = 2;
+=======
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+>>>>>>> origin
             gbc.insets =new Insets(5,5,0,5);
             f.add(durLabel, gbc);
 
             //duration entry textfield
         durationEntry = new JTextField("");
+<<<<<<< HEAD
             gbc.gridx = 2;
             gbc.gridy = 3;
             gbc.gridwidth = 2;
+=======
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.gridwidth = 1;
+>>>>>>> origin
             gbc.insets =new Insets(0,5,5,5);
             gbc.fill = GridBagConstraints.HORIZONTAL;
             f.add(durationEntry, gbc);
 
+<<<<<<< HEAD
             //button for completeing workout and sending it to Add_Workout.java
 
         completeWorkout = new JButton("Complete Workout");
@@ -105,6 +183,15 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
             gbc.gridx = 2;
             gbc.gridy = 4;
             gbc.gridwidth = 2;
+=======
+
+
+        //button for adding another exercise to the workout
+        addNewExercise = new JButton("Add another exercise");
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            gbc.gridwidth = 1;
+>>>>>>> origin
             gbc.fill = GridBagConstraints.HORIZONTAL;
 
             addNewExercise.addActionListener(
@@ -113,16 +200,70 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
                             if(e.getSource()==addNewExercise){
                                 exerciseArr.add(exerciseEntry.getText());
                                 durationArr.add(durationEntry.getText());
+<<<<<<< HEAD
                                 JOptionPane.showMessageDialog(null, "Exercise Added: \n"+
                                         "You completed '"+exerciseEntry.getText()+ "' for "+durationEntry.getText()+" minutes.\n"+"Please add another exercise or complete workout.");
+=======
+                                JOptionPane.showMessageDialog(null, "Exercise Added: \n"+ "You completed '"+exerciseEntry.getText()+ "' for "+durationEntry.getText()+" minutes.\n"+"Please add another exercise or complete workout.");
+>>>>>>> origin
                                 exerciseEntry.setText("");
                                 durationEntry.setText("");
                             }
                         }
                     }
             );
+<<<<<<< HEAD
 
             f.add(addNewExercise, gbc);
+=======
+            f.add(addNewExercise,gbc);
+
+            //Instructions for comment
+            JLabel workComment = new JLabel("Enter Comment for Workout:");
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            gbc.gridwidth = 2 ;
+            gbc.fill = GridBagConstraints.NONE;
+            gbc.insets =new Insets(5,5,0,5);
+            f.add(workComment,gbc);
+
+            //Textfield for comment
+            JTextField workoutCom = new JTextField("");
+            gbc.gridx = 0;
+            gbc.gridy = 6;
+            gbc.gridwidth = 2;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            f.add(workoutCom, gbc);
+
+        //button for completeing workout and sending it to Add_Workout.java
+        completeWorkout = new JButton("Complete Workout");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(0,5,5,5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        completeWorkout.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Add_Workout add = new Add_Workout();
+                        if(e.getSource()==completeWorkout){
+                            workName = workoutName.getText();
+                            comment = workoutCom.getText();
+                            date = (Date) datePicker.getModel().getValue();
+                            String dateString = date.toString();
+                            add.addExercise(username,workName,comment, dateString,exerciseArr,durationArr);
+
+
+                            f.dispose();
+                            JOptionPane.showMessageDialog(null, "Workout Completed :)");
+                        }
+                    }
+                }
+        );
+        f.add(completeWorkout, gbc);
+
+            //finish the JFrame
+>>>>>>> origin
             f.pack();
             f.setLocationRelativeTo(null);
             f.setVisible(true);

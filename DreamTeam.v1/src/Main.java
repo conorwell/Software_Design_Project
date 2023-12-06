@@ -32,6 +32,18 @@ public class Main {
             }
         });
 
+        createbtn.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //what happens when action
+                System.out.println("Create Button pressed");
+                start.setVisible(false);
+
+                Create_Profile create = new Create_Profile();
+                create.create();
+            }
+        });
+
 
     }
 }

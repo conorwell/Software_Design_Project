@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.Objects;
 
 public class Load_Profile {
 
     DisplayLogin f= new DisplayLogin();
     Home_GUI h = new Home_GUI();
+    User_Model user = new User_Model();
 
     public void login(){
 
@@ -15,10 +17,29 @@ public class Load_Profile {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //what happens when action
-                System.out.println("Button pressed");
-                f.close();
-                f.open = false;
-                h.init();
+                String s = actionEvent.getActionCommand();
+
+                if (s.equals("Enter")) {
+                    boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
+                    if (approver){
+                        System.out.println(f.username.getText());
+                        user.addUser(f.username.getText(),f.password.getText(),"users.csv");
+
+                        System.out.println("enter pressed");
+                        f.close();
+                        f.open = false;
+                        h.init();
+                    }
+                    else{
+                        System.out.println("please enter a valid password");
+                    }
+
+
+                }
+
+
+
+
             }
         });
 

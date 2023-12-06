@@ -53,6 +53,17 @@ public class User_Model {
         return users_array;
     }
 
+    public boolean approveUser(String username, String password, String filepath){
+        //get list of all users
+        List<List<String>> users = getUsers(filepath);
+
+        //get specific user
+        for (List<String> user : users)
+            if (user.get(0).equals(password) && user.get(1).equals(username)) {
+                return true;
+            }
+        return false;
+    }
 
     public void editUser(String oldPassword, String oldUser, String newPassword, String newUser, String filePath) {
         //create list of users

@@ -43,8 +43,8 @@ public class Add_Workout {
         for(String s: new_exercise){
             System.out.println(s);
         }
-        Workout_Model mod = new Workout_Model();
-        mod.addWorkouts(username, workoutName, workoutComment, totalDuration, date, exercises, durations);
+        //Workout_Model mod = new Workout_Model();
+        //mod.addWorkouts(username, workoutName, workoutComment, totalDuration, date, exercises, durations);
         return new_exercise;
     }
 }

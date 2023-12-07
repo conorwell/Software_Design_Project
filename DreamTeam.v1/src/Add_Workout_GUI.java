@@ -1,4 +1,4 @@
-import org.jdatepicker.impl.JDatePanelImpl;
+ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
@@ -26,7 +26,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
 
-    public Add_Workout_GUI() {
+    public void Add_Workout_GUI() {
 
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes when you press x
@@ -188,7 +188,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
      * Invoked when an action occurs.
      *
      * @param e the event to be processed
-     */
+*/
     @Override
     public void actionPerformed(ActionEvent e) {
 

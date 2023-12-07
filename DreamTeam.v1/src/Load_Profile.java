@@ -22,8 +22,8 @@ public class Load_Profile {
                 if (s.equals("Enter")) {
                     boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
                     if (approver){
-                        System.out.println(f.username.getText());
-                        user.addUser(f.username.getText(),f.password.getText(),"users.csv");
+                        System.out.println("welcome " + f.username.getText());
+
 
                         System.out.println("enter pressed");
                         f.close();

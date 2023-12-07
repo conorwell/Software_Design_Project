@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Create_Profile {
 
     DisplayCreateProfile f= new DisplayCreateProfile();
-    Home_GUI h = new Home_GUI();
+    homeController hc = new homeController();
     User_Model user = new User_Model();
 
     public void create(){
@@ -20,7 +20,7 @@ public class Create_Profile {
                 String s = actionEvent.getActionCommand();
 
                 if (s.equals("Enter")) {
-
+                    String username = f.username.getText();
                     if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
                         System.out.println(f.username.getText());
                         user.addUser(f.username.getText(),f.password.getText(),"users.csv");
@@ -28,7 +28,7 @@ public class Create_Profile {
                         System.out.println("enter pressed");
                         f.close();
                         f.open = false;
-                        h.init();
+                        hc.homePage(username);
                     }
                     else{
                         System.out.println("please enter a valid password");

@@ -5,14 +5,12 @@ import java.util.Objects;
 public class Load_Profile {
 
     DisplayLogin f= new DisplayLogin();
-    Home_GUI h = new Home_GUI();
+    homeController h = new homeController();
     User_Model user = new User_Model();
 
     public void login(){
 
         f.init();
-
-
         f.btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -22,13 +20,14 @@ public class Load_Profile {
                 if (s.equals("Enter")) {
                     boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
                     if (approver){
+                        String user = f.username.getText();
                         System.out.println("welcome " + f.username.getText());
 
 
                         System.out.println("enter pressed");
                         f.close();
                         f.open = false;
-                        h.init();
+                        h.homePage(user);
                     }
                     else{
                         System.out.println("please enter a valid password");
@@ -36,9 +35,6 @@ public class Load_Profile {
 
 
                 }
-
-
-
 
             }
         });

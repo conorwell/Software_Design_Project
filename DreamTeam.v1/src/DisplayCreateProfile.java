@@ -12,7 +12,8 @@ public class DisplayCreateProfile {
     public void init(){
         open = true;
         f.setSize(400,500);
-
+        username.setText("username");
+        password.setText("password");
         btn.setSize(50,40);
         f.add(btn);
         f.add(username);

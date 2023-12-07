@@ -14,6 +14,8 @@ public class DisplayLogin {
         f.setSize(400,500);
 
         btn.setSize(50,40);
+        username.setText("username");
+        password.setText("password");
         f.add(btn);
         f.add(username);
         f.add(password);

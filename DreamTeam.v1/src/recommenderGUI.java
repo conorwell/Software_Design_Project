@@ -10,6 +10,8 @@ public class recommenderGUI extends JFrame{
     JTextPane desc = new JTextPane();
 
     JTextPane resp = new JTextPane();
+
+    JButton exit = new JButton();
     public void init(){
 
         f.setSize(400,500);
@@ -27,15 +29,21 @@ public class recommenderGUI extends JFrame{
 
         resp.setEditable(false);
         resp.setText("(response here)");
-        resp.setPreferredSize(new Dimension(350,375));
+        resp.setPreferredSize(new Dimension(350,350));
         f.add(resp);
+
+        exit.setText("EXIT");
+        exit.setSize(50,40);
+        f.add(exit);
 
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(new FlowLayout());
 
-
     }
 
+    public void close(){
+        f.setVisible(false);
+    }
 
 }

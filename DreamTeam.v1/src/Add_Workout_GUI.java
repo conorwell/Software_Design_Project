@@ -1,4 +1,4 @@
-import org.jdatepicker.impl.JDatePanelImpl;
+ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
@@ -29,6 +29,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
     public Add_Workout_GUI() {
         boolean workoutAdded = false;
+
 
         //creating JFRAME
         JFrame f = new JFrame();
@@ -198,7 +199,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
      * Invoked when an action occurs.
      *
      * @param e the event to be processed
-     */
+*/
     @Override
     public void actionPerformed(ActionEvent e) {
 

@@ -7,21 +7,22 @@ public class workoutReccomender {
 
     public static void main(String[] args){
         workoutReccomender wr = new workoutReccomender();
-        wr.reccomend();
+        wr.reccomend("conorwell");
     }
-    public void reccomend(){
+    public String reccomend(String username){
         workoutReccomender wr = new workoutReccomender();
         Workout_Model model = new Workout_Model();
-        List<List<String>> workouts = model.getWorkouts();
+        List<List<String>> workouts = model.getWorkouts(username);
         List<String> recent = workouts.get(workouts.size()-1);
         String prompt = "In my last workout, I did these exercises: ";
         for(int i=5;i<recent.size();i+=2){
             prompt += recent.get(i) +",";
         }
-        prompt += ". What do you reccomend I train in my next sesson?";
+        prompt += ". In 100 words or less, what do you reccomend I train in my next sesson?";
         System.out.println(recent);
         System.out.println(prompt);
-        System.out.println(wr.chatGPT(prompt));
+        String response = wr.chatGPT(prompt);
+        return response;
     }
     public static String chatGPT(String prompt) {
         String url = "https://api.openai.com/v1/chat/completions";

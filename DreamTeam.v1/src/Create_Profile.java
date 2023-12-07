@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-public class Load_Profile {
+public class Create_Profile {
 
-    DisplayLogin f= new DisplayLogin();
+    DisplayCreateProfile f= new DisplayCreateProfile();
     Home_GUI h = new Home_GUI();
     User_Model user = new User_Model();
 
-    public void login(){
+    public void create(){
 
         f.init();
 
@@ -20,8 +20,8 @@ public class Load_Profile {
                 String s = actionEvent.getActionCommand();
 
                 if (s.equals("Enter")) {
-                    boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
-                    if (approver){
+
+                    if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
                         System.out.println(f.username.getText());
                         user.addUser(f.username.getText(),f.password.getText(),"users.csv");
 
@@ -44,6 +44,5 @@ public class Load_Profile {
         });
 
     }
-
 
 }

@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
-public class DisplayLogin {
+public class DisplayCreateProfile {
+
     JFrame f = new JFrame();
     JButton btn = new JButton("Enter");
     JTextField username = new JTextField(16);
@@ -29,6 +29,5 @@ public class DisplayLogin {
         f.setVisible(false);
 
     }
-
 
 }

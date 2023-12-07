@@ -11,7 +11,7 @@ public class Add_Workout {
     private String workoutComment;
     private String date;
 
-
+    //method that constructs an array list and returns it from the data from the gui
     public ArrayList<String> addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
         ArrayList<String> new_exercise = new ArrayList<String>();
         this.username = user;
@@ -34,7 +34,7 @@ public class Add_Workout {
         new_exercise.add(workoutComment);
         new_exercise.add(date);
 
-
+        //logic for alternating exercises and duration
         for(int i =0; i<exercises.size(); i++){
             new_exercise.add(exercises.get(i));
             new_exercise.add(durations.get(i));

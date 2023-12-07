@@ -1,49 +1,17 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        JFrame start = new JFrame();
-        JButton loginbtn = new JButton("Login Test!");
-        JButton createbtn = new JButton("Create Profile Test!");
+        // Press Opt+Enter with your caret at the highlighted text to see how
+        // IntelliJ IDEA suggests fixing it.
+        System.out.printf("Hello and welcome!");
 
-        loginbtn.setSize(50,40);
-        createbtn.setSize(50,40);
-        start.setSize(400,500);
+        // Press Ctrl+R or click the green arrow button in the gutter to run the code.
+        for (int i = 1; i <= 5; i++) {
 
-        start.add(loginbtn);
-        start.add(createbtn);
-
-
-        start.setVisible(true);
-        start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        start.setLayout(new FlowLayout());
-
-        loginbtn.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //what happens when action
-                System.out.println("Login Button pressed");
-                start.setVisible(false);
-
-                Load_Profile load = new Load_Profile();
-                load.login();
-            }
-        });
-
-        createbtn.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //what happens when action
-                System.out.println("Create Button pressed");
-                start.setVisible(false);
-
-                Create_Profile create = new Create_Profile();
-                create.create();
-            }
-        });
-
-
+            // Press Ctrl+D to start debugging your code. We have set one breakpoint
+            // for you, but you can always add more by pressing Cmd+F8.
+            System.out.println("i = " + i);
+        }
     }
 }

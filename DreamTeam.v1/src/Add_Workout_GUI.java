@@ -28,6 +28,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
     public Add_Workout_GUI() {
 
+        //creating JFRAME
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes when you press x
         f.setTitle("Add Workout"); //Title of window
@@ -192,5 +193,9 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public static void main(String[] args) {
+        Add_Workout_GUI run = new Add_Workout_GUI();
     }
 }

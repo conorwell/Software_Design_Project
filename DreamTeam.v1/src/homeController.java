@@ -8,6 +8,7 @@ public class homeController {
 
     Add_Workout_GUI aw = new Add_Workout_GUI();
 
+
     public static void main(String[] args){
         homeController hc = new homeController();
         hc.homePage("conorwell");
@@ -38,6 +39,20 @@ public class homeController {
                 if (s.equals("Add Workout")) {
                     System.out.println("add workout screen requested");
                     aw.Add_Workout_GUI(username);
+                }
+            }
+        });
+
+        home.vw.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //what happens when action
+                String s = actionEvent.getActionCommand();
+
+                if (s.equals("View Workouts")) {
+                    System.out.println("add workout screen requested");
+                    Workout_Viewer wv = new Workout_Viewer();
                 }
             }
         });

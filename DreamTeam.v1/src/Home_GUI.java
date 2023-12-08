@@ -10,6 +10,8 @@ public class Home_GUI extends JFrame{
     JTextPane welcome = new JTextPane();
 
     JButton addW = new JButton();
+
+    JButton vw = new JButton();
     public void init(String username){
 
         f.setSize(400,500);
@@ -29,6 +31,10 @@ public class Home_GUI extends JFrame{
         addW.setText("Add Workout");
         addW.setSize(50,40);
         f.add(addW);
+
+        vw.setText("View Workouts");
+        vw.setSize(50,40);
+        f.add(vw);
 
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -16,12 +16,10 @@ public class Home_GUI extends JFrame{
 
         f.setSize(400,500);
 
-        JButton btn = new JButton("Home Test!");
-        btn.setSize(50,40);
-        f.add(btn);
-
-        welcome.setSize(new Dimension(300,40));
+        welcome.setPreferredSize(new Dimension(300,20));
         welcome.setText("Hello " + username + "!");
+        welcome.setAlignmentX(CENTER_ALIGNMENT);
+        welcome.setEditable(false);
         f.add(welcome);
 
         recBtn.setSize(50,40);

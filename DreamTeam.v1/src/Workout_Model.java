@@ -10,6 +10,7 @@ import java.util.*;
 
 public class Workout_Model {
 
+
     public static List<List<String>> getWorkouts() {
         //create ArrayList of workouts
         List<List<String>> workouts = new ArrayList<>();
@@ -31,6 +32,7 @@ public class Workout_Model {
     public static List<List<String>> getWorkouts(String username) {
         //create ArrayList of workouts
         List<List<String>> workouts = new ArrayList<>();
+        List<List<String>> userWorkouts = new ArrayList<>();
 
         //Read each line of csv file
         try (BufferedReader woBr = new BufferedReader(new FileReader("workouts.csv"))) {
@@ -45,14 +47,11 @@ public class Workout_Model {
         }
         for (int i = 0; i < workouts.size(); i++) {
             if (workouts.get(i).get(0).equals(username)) {
-
-            } else {
-                workouts.remove(workouts.get(i));
+                userWorkouts.add(workouts.get(i));
             }
 
-
         }
-        return workouts;
+        return userWorkouts;
     }
 
     public static void addWorkouts(String username, String workoutName, String comment, String totalDuration, String date, ArrayList<String> exercises, ArrayList<String> durations) {

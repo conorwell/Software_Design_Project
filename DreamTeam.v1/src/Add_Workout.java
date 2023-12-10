@@ -81,9 +81,11 @@ public class Add_Workout {
         }
         Workout_Model mod = new Workout_Model();
         String[] newExer = new String[exercises.size()];
-            for(int i =0; i<exercises.size(); i++){
-                newExer[i] = exercises.get(i);
-            }
+
+        for(int i =0; i<exercises.size(); i++){
+            newExer[i] = exercises.get(i);
+        }
+
         String[] newDur = new String[durations.size()];
         for(int i =0; i<durations.size(); i++){
             newDur[i] = durations.get(i);

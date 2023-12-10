@@ -58,11 +58,11 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
 
 
         //label for exercise input
-        exLabel = new JLabel("         Enter Exercise");
+        exLabel = new JLabel("Enter Exercise:");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets =new Insets(5,5,0,5);
         f.add(exLabel,gbc);
 
@@ -76,10 +76,11 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         f.add(exerciseEntry, gbc);
 
         //label for duration textfield
-        JLabel durLabel = new JLabel(" Enter Duration of workout");
+        JLabel durLabel = new JLabel("Enter Duration of workout:");
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets =new Insets(5,5,0,5);
         f.add(durLabel, gbc);
 
@@ -157,6 +158,16 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
                 }
         );
         f.add(completeWorkout, gbc);
+
+        JLabel display = new JLabel("Current Workout");
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+
+        f.add(display,gbc);
+
+
 
         //finish the JFrame
         f.pack();

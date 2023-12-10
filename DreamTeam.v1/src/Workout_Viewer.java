@@ -12,6 +12,7 @@ import java.util.Vector;
 
 public class Workout_Viewer extends JFrame implements ActionListener {
 
+
     private ArrayList<ArrayList<String>> data;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
     public Workout_Viewer(){
@@ -118,3 +119,4 @@ public class Workout_Viewer extends JFrame implements ActionListener {
 
     }
 }
+

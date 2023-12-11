@@ -14,6 +14,7 @@ public class DisplayLogin extends Canvas{
     //ImageIcon logo = new ImageIcon("C:\\Users\\olson\\dreamteam\\DreamTeam.jpg");
     boolean open = false;
 
+
     public void init(){
         open = true;
         f.setSize(400,500);

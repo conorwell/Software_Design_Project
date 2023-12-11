@@ -12,6 +12,7 @@ public class Workout_Model {
         //create ArrayList of workouts
         List<List<String>> workouts = new ArrayList<>();
 
+
         //Read each line of csv file
         try (BufferedReader woBr = new BufferedReader(new FileReader("workouts.csv"))) {
             String line;

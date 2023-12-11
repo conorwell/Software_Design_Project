@@ -19,7 +19,7 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
     private ArrayList<String> exerciseArr = new ArrayList<String>();
     private ArrayList<String> durationArr = new ArrayList<String>();;
     private String workName;
-    private String username = "filler";
+    private String username;
     private String comment;
     private JLabel exLabel;
     private String date;
@@ -29,8 +29,9 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
 
 
-    public Edit_Workout_GUI(String date, String com, String nam) {
 
+    public Edit_Workout_GUI(String date, String com, String nam, String user) {
+        this.username = user;
         this.date = date;//date to sort by
 
         //creating JFRAME
@@ -132,11 +133,10 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
                             workName = workoutName.getText();
                             comment = workoutCom.getText();
 
-                            add.editExercise(username,workName,comment, date, exerciseArr,durationArr);
+                            add.editExercise(username, workName,comment, date, exerciseArr,durationArr);
 
                             JOptionPane.showMessageDialog(null, "Edits Saved");
                             f.dispose();
-                            Workout_Viewer view = new Workout_Viewer();
                         }
                     }
                 }

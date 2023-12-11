@@ -12,10 +12,11 @@ import java.util.Vector;
 
 public class Workout_Viewer extends JFrame implements ActionListener {
 
-
+    private String usernam;
     private ArrayList<ArrayList<String>> data;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
-    public Workout_Viewer(){
+    public Workout_Viewer(String u){
+        this.usernam = u;
         JFrame fe = new JFrame("Workout Viewer");
         fe.setDefaultCloseOperation(2); //closes when you press x
         fe.setTitle("Workout Viewer"); //Title of window
@@ -30,6 +31,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         fe.add(title, gbc);
 
 
+        Load_Profile lp = new Load_Profile();
 
         //table and file
         File workouts = new File("workouts.csv"); //creating file to read from
@@ -51,7 +53,8 @@ public class Workout_Viewer extends JFrame implements ActionListener {
                     if(i==0){
                         defTab.addColumn(data.get(i).get(j));
                     }else{
-                        row.add(data.get(i).get(j));
+                        if(data.get(i).get(0).equals(usernam))
+                            row.add(data.get(i).get(j));
                     }
                 }
                 if(i!= 0){
@@ -92,7 +95,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
                             String value = tab.getModel().getValueAt(row, 4).toString();
                             String com = tab.getModel().getValueAt(row, 2).toString();
                             String nam = tab.getModel().getValueAt(row, 1).toString();
-                                Edit_Workout_GUI ed = new Edit_Workout_GUI(value, com, nam);
+                                Edit_Workout_GUI ed = new Edit_Workout_GUI(value, com, nam, usernam);
                             fe.dispose();
                         }else{
                             JOptionPane.showMessageDialog(null, "Please select the workout you wish to edit");
@@ -108,10 +111,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
     }
 
 
-    public static void main(String[] args) {
-        Workout_Viewer w = new Workout_Viewer();
 
-    }
     /**
      * Invoked when an action occurs.
      *

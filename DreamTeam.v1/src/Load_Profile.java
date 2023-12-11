@@ -7,6 +7,7 @@ public class Load_Profile {
     DisplayLogin f= new DisplayLogin();
     homeController h = new homeController();
     User_Model user = new User_Model();
+    private String globUser;
 
     public void login(){
 
@@ -21,6 +22,7 @@ public class Load_Profile {
                     boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
                     if (approver){
                         String user = f.username.getText();
+                        globUser = user;
                         System.out.println("welcome " + f.username.getText());
 
 
@@ -56,6 +58,9 @@ public class Load_Profile {
             }
         });
 
+    }
+    public String getGlobUser(){
+        return globUser;
     }
 
 

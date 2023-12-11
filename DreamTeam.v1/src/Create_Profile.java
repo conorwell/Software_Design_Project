@@ -1,17 +1,20 @@
+
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
-public class Load_Profile {
+public class Create_Profile {
 
-    DisplayLogin f= new DisplayLogin();
-    homeController h = new homeController();
+    DisplayCreateProfile f= new DisplayCreateProfile();
+    Load_Profile l = new Load_Profile();
     User_Model user = new User_Model();
-    private String globUser;
 
-    public void login(){
+    public void create(){
 
         f.init();
+
+
         f.btn.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -19,17 +22,15 @@ public class Load_Profile {
                 String s = actionEvent.getActionCommand();
 
                 if (s.equals("Enter")) {
-                    boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
-                    if (approver){
-                        String user = f.username.getText();
-                        globUser = user;
-                        System.out.println("welcome " + f.username.getText());
-
-
+                    String username = f.username.getText();
+                    if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
+                        System.out.println(f.username.getText());
+                        user.addUser(f.username.getText(),f.password.getText(),"users.csv");
+                        Friends.FriendsMain.createFriendsList(username);
                         System.out.println("enter pressed");
                         f.close();
                         f.open = false;
-                        h.homePage(user);
+                        l.login();
                     }
                     else{
                         System.out.println("please enter a valid password");
@@ -38,30 +39,30 @@ public class Load_Profile {
 
                 }
 
+
+
+
             }
         });
 
-        f.noUser.addActionListener(new AbstractAction() {
+        f.back.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //what happens when action
                 String s = actionEvent.getActionCommand();
 
-                if (s.equals("Create Account")) {
+                if (s.equals("Back to login")) {
                     f.close();
-                    Create_Profile c = new Create_Profile();
-                    c.create();
-
-
+                    Load_Profile load = new Load_Profile();
+                    load.login();
                 }
+
+
+
 
             }
         });
 
     }
-    public String getGlobUser(){
-        return globUser;
-    }
-
 
 }

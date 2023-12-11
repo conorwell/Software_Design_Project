@@ -10,8 +10,8 @@ import java.util.*;
 public class FriendsGUI extends JFrame implements ActionListener {
     public FriendsGUI(String user){
         GridBagConstraints gbc = new GridBagConstraints();
-        JFrame friendsFrame = new JFrame("Friends List");
-        friendsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame friendsFrame = new JFrame("DreamTeam.v1.src.Friends List");
+        friendsFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         friendsFrame.setLayout(new GridBagLayout());
         gbc.insets =new Insets(5,5,5,5);
 
@@ -35,10 +35,13 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 if(e.getSource()==addButton){
                     String userToAdd = (JOptionPane.showInputDialog(null, "Enter a user to add as a friend:","Add Friend",JOptionPane.INFORMATION_MESSAGE));
                     System.out.println(userToAdd);
-                    boolean requestSent = FriendsMain.sendRequest(user,userToAdd);
-                    if(!requestSent){
-                        System.out.println("this will be updated with cases for user already sent request, user already in friends list");
-                        JOptionPane.showMessageDialog(null,"User "+userToAdd+" could not be found.","Error",JOptionPane.ERROR_MESSAGE);
+                    int requestSent = FriendsMain.sendRequest(user,userToAdd);
+                    switch((Integer) requestSent){
+                        case 0:JOptionPane.showMessageDialog(null,"Sent friend request to "+userToAdd+".","Success",JOptionPane.INFORMATION_MESSAGE);break;
+                        case 1:JOptionPane.showMessageDialog(null,"Error: You are already friends with this user.","Error",JOptionPane.ERROR_MESSAGE);break;
+                        case 2:JOptionPane.showMessageDialog(null,"Error: You have already sent this user a friend request.","Error",JOptionPane.ERROR_MESSAGE);break;
+                        case 3:JOptionPane.showMessageDialog(null,"Error: "+userToAdd+" has already sent you a friend request (accept below).","Error",JOptionPane.ERROR_MESSAGE);break;
+                        case 4:JOptionPane.showMessageDialog(null,"Error: User "+userToAdd+" could not be found.","Error",JOptionPane.ERROR_MESSAGE);break;
                     }
                 }}});
 
@@ -50,7 +53,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
         try{ArrayList<String> friendsArray = new ArrayList<>();
             ArrayList<String> requestsArray = new ArrayList<>();
             Scanner senderListReader = new Scanner(friendsList);
-            friendsModel.addColumn("<html><b>Friends:</b></html>");
+            friendsModel.addColumn("<html><b>DreamTeam.v1.src.Friends:</b></html>");
             friendsModel.addColumn("<html><b>Requests:</b></html>");
             ArrayList<Vector> rows = new ArrayList<>();
             while (senderListReader.hasNextLine()) {
@@ -75,17 +78,17 @@ public class FriendsGUI extends JFrame implements ActionListener {
         JTable friendsTable = new JTable();
         friendsTable.setModel(friendsModel);
         friendsFrame.add(friendsTable);
-        final int finalFriendCount=friendCount; final int finalRequestCount=0;
+        final int finalFriendCount=friendCount; final int finalRequestCount=requestCount;
         friendsTable.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 1) {
                     JTable target = (JTable)e.getSource();
                     int row = target.getSelectedRow();
                     int column = target.getSelectedColumn();
-                    if(column==0){
+                    if(column==0&&row<finalFriendCount){
                         System.out.println("clicked a friend");
                         //friends user profile, remove friend option, and/or challenge option could go here
-                    }else if(column==1){
+                    }else if(column==1&&row<finalRequestCount){
                         System.out.println("reeeee");
                         JOptionPane requestPane = new JOptionPane(friendsTable.getValueAt(row,column)+" sent you a friend request.");
                         Object[] requestButtons = { "Accept", "Reject" };
@@ -94,7 +97,8 @@ public class FriendsGUI extends JFrame implements ActionListener {
                         switch ((Integer) answer){
                             case 0:FriendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
                                 System.out.println("Table wont update so will have to load to main screen then back in");
-                            //refresh page, probably by switching to home screen and back
+                                friendsFrame.setVisible(false);
+                                FriendsGUI refreshGUI = new FriendsGUI(user);
                     }}}}});
 
         JScrollPane scroll = new JScrollPane();
@@ -110,7 +114,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
 
 
     public static void main(String[] args) {
-        FriendsGUI f = new FriendsGUI("big");
+        FriendsGUI f = new FriendsGUI("guest");
     }
 
     @Override

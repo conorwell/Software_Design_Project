@@ -12,6 +12,7 @@ public class Home_GUI extends JFrame{
     JButton addW = new JButton();
 
     JButton vw = new JButton();
+    JButton friendButton = new JButton();
     public void init(String username){
 
         f.setSize(400,500);
@@ -33,6 +34,10 @@ public class Home_GUI extends JFrame{
         vw.setText("View Workouts");
         vw.setSize(50,40);
         f.add(vw);
+
+        friendButton.setText("View Workouts");
+        friendButton.setSize(50,40);
+        f.add(friendButton);
 
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

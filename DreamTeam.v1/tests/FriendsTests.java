@@ -1,5 +1,7 @@
-package Friends;
+package DreamTeam.v1.tests;
 
+import DreamTeam.v1.src.Friends.FriendsGUI;
+import DreamTeam.v1.src.Friends.FriendsMain;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
@@ -17,7 +19,7 @@ public class FriendsTests {
             testFile.delete();
             return;
         }catch(Exception e){
-            fail("Friends list file couldn't be created");
+            fail("DreamTeam.v1.src.Friends list file couldn't be created");
         }
     }
 

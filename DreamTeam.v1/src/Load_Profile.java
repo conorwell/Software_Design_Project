@@ -39,6 +39,23 @@ public class Load_Profile {
             }
         });
 
+        f.noUser.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //what happens when action
+                String s = actionEvent.getActionCommand();
+
+                if (s.equals("Create Account")) {
+                    f.close();
+                    Create_Profile c = new Create_Profile();
+                    c.create();
+
+
+                }
+
+            }
+        });
+
     }
 
 

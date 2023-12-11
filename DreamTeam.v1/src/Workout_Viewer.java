@@ -17,7 +17,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
     public Workout_Viewer(){
         JFrame fe = new JFrame("Workout Viewer");
-        fe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes when you press x
+        fe.setDefaultCloseOperation(2); //closes when you press x
         fe.setTitle("Workout Viewer"); //Title of window
         fe.setLayout(new GridBagLayout());
         gbc.insets =new Insets(5,5,5,5);
@@ -81,22 +81,25 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+
         fe.add(edit, gbc);
 
         edit.addActionListener( //action listner for button
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if(e.getSource()==edit){
-                            int column = 4;
+                        if(e.getSource()==edit && tab.getSelectedRow() != -1){
                             int row = tab.getSelectedRow();
-                            String value = tab.getModel().getValueAt(row, column).toString();
-                            Edit_Workout_GUI ed = new Edit_Workout_GUI(value);
+                            String value = tab.getModel().getValueAt(row, 4).toString();
+                            String com = tab.getModel().getValueAt(row, 2).toString();
+                            String nam = tab.getModel().getValueAt(row, 1).toString();
+                                Edit_Workout_GUI ed = new Edit_Workout_GUI(value, com, nam);
                             fe.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Please select the workout you wish to edit");
                         }
                     }
                 }
         );
-
 
         fe.pack();
         fe.setLocationRelativeTo(null);

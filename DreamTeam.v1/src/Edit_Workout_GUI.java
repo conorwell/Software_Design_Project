@@ -12,8 +12,8 @@ import java.util.Properties;
 
 public class Edit_Workout_GUI extends JFrame implements ActionListener {
     private JTextField  workoutName;
-    private JTextField  exerciseEntry;
-    private JTextField  durationEntry;
+    private JComboBox<String>  exerciseEntry;
+    private JComboBox<Integer>  durationEntry;
     private JButton completeWorkout;
     private JButton addNewExercise;
     private ArrayList<String> exerciseArr = new ArrayList<String>();
@@ -28,13 +28,14 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
 
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
 
-    public Edit_Workout_GUI(String date) {
+
+    public Edit_Workout_GUI(String date, String com, String nam) {
 
         this.date = date;//date to sort by
 
         //creating JFRAME
         JFrame f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes when you press x
+        f.setDefaultCloseOperation(2); //closes when you press x
         f.setTitle("Edit Workout"); //Title of window
         f.setLayout(new GridBagLayout());
 
@@ -49,7 +50,7 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         f.add(workLabel,gbc);
 
         //Textfield for name
-        workoutName = new JTextField("");
+        workoutName = new JTextField(nam);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
@@ -66,8 +67,9 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         gbc.insets =new Insets(5,5,0,5);
         f.add(exLabel,gbc);
 
-        //exercise entry text field
-        exerciseEntry = new JTextField("");
+        //exercise entry drop down
+        String[] exerChoice = {"Run", "Hike", "Ski", "Climb", "Bike", "Weight Train", "Juggle", "Game"};
+        exerciseEntry = new JComboBox<>(exerChoice);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 1;
@@ -84,8 +86,9 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         gbc.insets =new Insets(5,5,0,5);
         f.add(durLabel, gbc);
 
-        //duration entry textfield
-        durationEntry = new JTextField("");
+        //duration entry dropdown
+        Integer[] durChoice = {0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180};
+        durationEntry = new JComboBox<>(durChoice);
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.gridwidth = 1;
@@ -94,27 +97,7 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         f.add(durationEntry, gbc);
 
 
-        //button for adding another exercise to the workout
-        addNewExercise = new JButton("Add another exercise");
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        addNewExercise.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if(e.getSource()==addNewExercise){
-                            exerciseArr.add(exerciseEntry.getText());
-                            durationArr.add(durationEntry.getText());
-                            JOptionPane.showMessageDialog(null, "Exercise Added: \n"+ "You completed '"+exerciseEntry.getText()+ "' for "+durationEntry.getText()+" minutes.\n"+"Please add another exercise or complete workout.");
-                            exerciseEntry.setText("");
-                            durationEntry.setText("");
-                        }
-                    }
-                }
-        );
-        f.add(addNewExercise,gbc);
 
         //Instructions for comment
         JLabel workComment = new JLabel("Enter Comment for Workout:");
@@ -126,7 +109,7 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         f.add(workComment,gbc);
 
         //Textfield for comment
-        JTextField workoutCom = new JTextField("");
+        JTextField workoutCom = new JTextField(com);
         gbc.gridx = 0;
         gbc.gridy = 6;
         gbc.gridwidth = 2;
@@ -138,8 +121,9 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 1;
-        gbc.insets =new Insets(0,5,5,5);
+        gbc.insets =new Insets(5,5,5,5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        completeWorkout.setEnabled(false);
         completeWorkout.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -159,13 +143,89 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
         );
         f.add(completeWorkout, gbc);
 
+        //Current workout GUI stuff
         JLabel display = new JLabel("Current Workout");
         gbc.gridx = 0;
         gbc.gridy = 7;
         gbc.gridwidth = 2;
+        gbc.insets =new Insets(5,5,5,5);
         gbc.fill = GridBagConstraints.NONE;
-
         f.add(display,gbc);
+
+        //Current workout exercises
+        JLabel displayExer = new JLabel("Exercises:");
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(5,5,5,5);
+        gbc.fill = GridBagConstraints.NONE;
+        f.add(displayExer,gbc);
+
+        //current workout displaydur
+        JLabel displayDur = new JLabel("Durations:");
+        gbc.gridx = 1;
+        gbc.gridy = 8;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(5,5,5,5);
+        gbc.fill = GridBagConstraints.NONE;
+        f.add(displayDur,gbc);
+
+        Color color = f.getBackground ();
+
+        //current workout exercises display
+        JTextArea dispTextExer = new JTextArea("");
+        dispTextExer.setBackground(color);
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(5,5,20,5);
+        gbc.fill = GridBagConstraints.NONE;
+        dispTextExer.setEditable(false);
+        f.add(dispTextExer,gbc);
+
+        //dispaly textDuration
+        JTextArea dispTextDur = new JTextArea("");
+        dispTextDur.setBackground(color);
+        gbc.gridx = 1;
+        gbc.gridy = 9;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(5,5,20,5);
+        gbc.fill = GridBagConstraints.NONE;
+        dispTextDur.setEditable(false);
+        f.add(dispTextDur,gbc);
+
+        //button for adding another exercise to the workout
+        addNewExercise = new JButton("Add exercise");
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.gridwidth = 1;
+        gbc.insets =new Insets(5,5,5,5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        addNewExercise.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if(e.getSource()==addNewExercise){
+                            exerciseArr.add(exerciseEntry.getSelectedItem().toString());
+                            durationArr.add(durationEntry.getSelectedItem().toString());
+
+                            String one = "";
+                            String two = "";
+                            for(int i =0; i<exerciseArr.size();i++) { //logic for current workout feature
+                                one = one+exerciseArr.get(i)+"\n";
+                                two = two+durationArr.get(i)+"\n";
+                            }
+                            dispTextExer.setText(one);
+                            dispTextDur.setText(two);
+                            f.pack();
+
+                            JOptionPane.showMessageDialog(null, "Exercise Added: \n"+ "You completed '"+exerciseEntry.getSelectedItem()+ "' for "+durationEntry.getSelectedItem()+" minutes.\n"+"Please add another exercise or complete workout.");
+                            completeWorkout.setEnabled(true);
+                        }
+                    }
+                }
+        );
+        f.add(addNewExercise,gbc);
 
 
 
@@ -186,8 +246,4 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        String date = "Thu Dec 07 13:57:02 MST 2023";
-        Edit_Workout_GUI run = new Edit_Workout_GUI(date);
-    }
 }

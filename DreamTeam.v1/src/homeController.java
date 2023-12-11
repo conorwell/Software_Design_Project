@@ -11,7 +11,7 @@ public class homeController {
 
     public static void main(String[] args){
         homeController hc = new homeController();
-        hc.homePage("conorwell");
+        hc.homePage("");
     }
     public void homePage(String username){
         home.init(username);
@@ -24,7 +24,7 @@ public class homeController {
 
                 if (s.equals("Recommender")) {
                     System.out.println("rec screen requested");
-                    rc.getRec("conorwell");
+                    rc.getRec(username);
                 }
             }
         });

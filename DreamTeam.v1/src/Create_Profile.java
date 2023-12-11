@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Create_Profile {
 
     DisplayCreateProfile f= new DisplayCreateProfile();
-    homeController hc = new homeController();
+    Load_Profile l = new Load_Profile();
     User_Model user = new User_Model();
 
     public void create(){
@@ -28,13 +28,31 @@ public class Create_Profile {
                         System.out.println("enter pressed");
                         f.close();
                         f.open = false;
-                        hc.homePage(username);
+                        l.login();
                     }
                     else{
                         System.out.println("please enter a valid password");
                     }
 
 
+                }
+
+
+
+
+            }
+        });
+
+        f.back.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //what happens when action
+                String s = actionEvent.getActionCommand();
+
+                if (s.equals("Back to login")) {
+                    f.close();
+                    Load_Profile load = new Load_Profile();
+                    load.login();
                 }
 
 

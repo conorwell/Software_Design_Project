@@ -15,10 +15,15 @@ public class recController {
             public void actionPerformed(ActionEvent actionEvent) {
                 //what happens when action
                 String s = actionEvent.getActionCommand();
-
-                if (s.equals("Get Recommendation!")) {
-                    System.out.println("recommendation requested");
-                    r.resp.setText(wr.reccomend(username));
+                try {
+                    if (s.equals("Get Recommendation!")) {
+                        System.out.println("recommendation requested");
+                        r.resp.setText(wr.reccomend(username));
+                        r.btn.setEnabled(false);
+                    }
+                }
+                catch(Exception e){
+                    r.resp.setText("Looks like you haven't completed a workout yet, come back once you have!");
                 }
             }
         });

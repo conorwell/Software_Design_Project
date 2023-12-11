@@ -7,6 +7,7 @@ public class Load_Profile {
     DisplayLogin f= new DisplayLogin();
     homeController h = new homeController();
     User_Model user = new User_Model();
+    private String globUser;
 
     public void login(){
 
@@ -21,6 +22,7 @@ public class Load_Profile {
                     boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
                     if (approver){
                         String user = f.username.getText();
+                        globUser = user;
                         System.out.println("welcome " + f.username.getText());
 
 
@@ -39,6 +41,26 @@ public class Load_Profile {
             }
         });
 
+        f.noUser.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //what happens when action
+                String s = actionEvent.getActionCommand();
+
+                if (s.equals("Create Account")) {
+                    f.close();
+                    Create_Profile c = new Create_Profile();
+                    c.create();
+
+
+                }
+
+            }
+        });
+
+    }
+    public String getGlobUser(){
+        return globUser;
     }
 
 

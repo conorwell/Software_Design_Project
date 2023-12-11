@@ -5,11 +5,9 @@ import java.util.List;
 
 public class workoutReccomender {
 
-    public static void main(String[] args){
-        workoutReccomender wr = new workoutReccomender();
-        wr.reccomend("conorwell");
-    }
+
     public String reccomend(String username){
+
         workoutReccomender wr = new workoutReccomender();
         Workout_Model model = new Workout_Model();
         List<List<String>> workouts = model.getWorkouts(username);

@@ -10,16 +10,16 @@ public class Home_GUI extends JFrame{
     JTextPane welcome = new JTextPane();
 
     JButton addW = new JButton();
+
+    JButton vw = new JButton();
     public void init(String username){
 
         f.setSize(400,500);
 
-        JButton btn = new JButton("Home Test!");
-        btn.setSize(50,40);
-        f.add(btn);
-
-        welcome.setSize(new Dimension(300,40));
+        welcome.setPreferredSize(new Dimension(300,20));
         welcome.setText("Hello " + username + "!");
+        welcome.setAlignmentX(CENTER_ALIGNMENT);
+        welcome.setEditable(false);
         f.add(welcome);
 
         recBtn.setSize(50,40);
@@ -30,12 +30,15 @@ public class Home_GUI extends JFrame{
         addW.setSize(50,40);
         f.add(addW);
 
+        vw.setText("View Workouts");
+        vw.setSize(50,40);
+        f.add(vw);
+
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(new FlowLayout());
 
 
     }
-
 
 }

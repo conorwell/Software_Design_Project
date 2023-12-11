@@ -29,7 +29,7 @@ public class FriendsMain {
                         //could either auto accept request or just tell the user to go to friends request page
                         return 3;}}}
             senderListReader.close();
-            Scanner userbaseReader = new Scanner(new File("users./.csv")); //swap to master userbase
+            Scanner userbaseReader = new Scanner(new File("users.csv")); //swap to master userbase
             while (userbaseReader.hasNextLine()) {
                 String[] fileUser = userbaseReader.nextLine().split(",");
                 if(fileUser[0].equals(recievingUser)){ //switch to fileUser[1] if file in password,username order

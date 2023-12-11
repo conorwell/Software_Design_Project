@@ -35,7 +35,7 @@ public class Home_GUI extends JFrame{
         vw.setSize(50,40);
         f.add(vw);
 
-        friendButton.setText("View Workouts");
+        friendButton.setText("Friends");
         friendButton.setSize(50,40);
         f.add(friendButton);
 

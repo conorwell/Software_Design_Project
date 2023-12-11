@@ -24,6 +24,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 if(e.getSource()==exitButton){
                     System.out.println("exit time");
                     //return to home screen
+                    friendsFrame.setVisible(false);
                 }}});
 
         JButton addButton = new JButton("Add Friend");

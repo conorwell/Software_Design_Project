@@ -1,4 +1,4 @@
-import DreamTeam.v1.src.Friends.FriendsGUI;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -71,7 +71,7 @@ public class homeController {
                 String s = actionEvent.getActionCommand();
                 if (s.equals("Friends")) {
                     System.out.println("friends screen requested");
-                    FriendsGUI friendsGUI = new FriendsGUI(username);
+                    Friends.FriendsGUI friendsGUI = new Friends.FriendsGUI(username);
                 }
             }
         });

@@ -68,6 +68,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
+
         gbc.insets =new Insets(5,5,0,5);
         f.add(dateLabel,gbc);
 
@@ -107,6 +108,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         f.add(exerciseEntry, gbc);
 
         //label for duration textfield
+
         JLabel durLabel = new JLabel("Select Duration of workout:");
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -125,6 +127,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         f.add(durationEntry, gbc);
 
+
         //Instructions for comment
         JLabel workComment = new JLabel("Enter Comment for Workout:");
         gbc.gridx = 0;
@@ -141,6 +144,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         f.add(workoutCom, gbc);
+
 
         //Current workout GUI stuff
         JLabel display = new JLabel("Current Workout");
@@ -193,6 +197,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.NONE;
         dispTextDur.setEditable(false);
         f.add(dispTextDur,gbc);
+
 
 
 
@@ -263,8 +268,6 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
                 }
         );
         f.add(completeWorkout, gbc);
-
-
 
 
         //finish the JFrame

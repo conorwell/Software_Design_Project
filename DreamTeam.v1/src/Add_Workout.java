@@ -41,6 +41,7 @@ public class Add_Workout {
             new_exercise.add(durations.get(i));
         }
 
+
         for(String s: new_exercise){
             System.out.println(s);
         }

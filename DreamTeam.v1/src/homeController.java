@@ -1,3 +1,5 @@
+
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -58,6 +60,18 @@ public class homeController {
                 if (s.equals("View Workouts")) {
                     System.out.println("add workout screen requested");
                     Workout_Viewer wv = new Workout_Viewer(username);
+                }
+            }
+        });
+
+        home.friendButton.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Friends")) {
+                    System.out.println("friends screen requested");
+                    Friends.FriendsGUI friendsGUI = new Friends.FriendsGUI(username);
                 }
             }
         });

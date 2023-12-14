@@ -5,7 +5,7 @@ import java.util.*;
 
 public class FriendsMain {
 
-    public void createFriendsList(String username) {    //to be run when an account is created
+    public static void createFriendsList(String username) {    //to be run when an account is created
         try {String listName = "./FriendsLists/" + username + "_Friends.csv";
             File friendsList = new File(listName);
             friendsList.getParentFile().mkdirs();
@@ -13,23 +13,23 @@ public class FriendsMain {
         } catch (IOException e) {System.out.println("file couldn't be created");}
     }
 
-    public static boolean sendRequest(String sendingUser,String recievingUser) {
+    public static int sendRequest(String sendingUser,String recievingUser) {
         try{Scanner senderListReader = new Scanner(new File("./FriendsLists/"+sendingUser+"_Friends.csv"));
             while (senderListReader.hasNextLine()) {
                 String[] friendUser = senderListReader.nextLine().split(",");
                 if(friendUser[0].equals(recievingUser)){
                     if(friendUser[1].equals("friends")){
                         System.out.println("Case: you are already friends with this user");
-                        return false;
+                        return 1;
                     }else if(friendUser[1].equals("sent")){
                         System.out.println("Case: you have already sent this user a friend request");
-                        return false;
+                        return 2;
                     }else if(friendUser[1].equals("recieved")){
                         System.out.println("Case: user has already sent you a friend request");
                         //could either auto accept request or just tell the user to go to friends request page
-                        return false;}}}
+                        return 3;}}}
             senderListReader.close();
-            Scanner userbaseReader = new Scanner(new File("./FriendsLists/ProxyUserbase.csv")); //swap to master userbase
+            Scanner userbaseReader = new Scanner(new File("users.csv")); //swap to master userbase
             while (userbaseReader.hasNextLine()) {
                 String[] fileUser = userbaseReader.nextLine().split(",");
                 if(fileUser[0].equals(recievingUser)){ //switch to fileUser[1] if file in password,username order
@@ -39,10 +39,10 @@ public class FriendsMain {
                     BufferedWriter requestSave = new BufferedWriter(new FileWriter("./FriendsLists/"+sendingUser+"_Friends.csv",true));
                     requestSave.write(fileUser[0]+",sent"+"\n");
                     requestSave.flush();requestSave.close();
-                return true;}}
-        return false;
+                return 0;}}
+        return 4;
     }catch(IOException e){}
-        return false;
+        return 4;
     }
 
     public static void acceptRequest(String sendingUser,String recievingUser) {
@@ -74,7 +74,7 @@ public class FriendsMain {
 
         public static void main (String[]args){
             FriendsMain friendsMain = new FriendsMain();
-            friendsMain.sendRequest("guest","big");
+            //friendsMain.sendRequest("guest","big");
             //friendsMain.acceptRequest("big","bob");
             //friendsMain.denyRequest("guest","big");
     }

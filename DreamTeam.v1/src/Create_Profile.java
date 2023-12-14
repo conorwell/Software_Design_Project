@@ -1,3 +1,5 @@
+
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
@@ -24,7 +26,7 @@ public class Create_Profile {
                     if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
                         System.out.println(f.username.getText());
                         user.addUser(f.username.getText(),f.password.getText(),"users.csv");
-
+                        Friends.FriendsMain.createFriendsList(username);
                         System.out.println("enter pressed");
                         f.close();
                         f.open = false;

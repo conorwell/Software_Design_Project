@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class User_Model {
+public class User_Model implements SubjectInterface{
 
 
     public void addUser(String password, String user, String filePath){

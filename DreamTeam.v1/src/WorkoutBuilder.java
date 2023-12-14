@@ -1,6 +1,7 @@
 public class WorkoutBuilder {
-    public workout workoutBuilder(){
+    public Workout workoutBuilder(){
+        Workout builtWorkout = null;
     //TODO Replace with actual algorithm
-        return workout;
+        return builtWorkout;
     }
 }

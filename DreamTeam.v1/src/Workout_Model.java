@@ -5,7 +5,12 @@ import java.text.ParseException;
 import java.util.*;
 
 
-public class Workout_Model {
+public final class Workout_Model {
+    public static final Workout_Model wm = new Workout_Model();
+
+    public static Workout_Model getInstance(){
+        return wm;
+    }
 
 
     public static List<List<String>> getWorkouts() {

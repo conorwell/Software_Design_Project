@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class User_Model {
+public final class User_Model {
+    public static final User_Model um = new User_Model();
 
+    public static User_Model getInstance(){
+        return um;
+    }
 
     public void addUser(String password, String user, String filePath){
         List<List<String>> users = getUsers(filePath);

@@ -1,10 +1,17 @@
+import Network.NetworkDriver;
+import Network.UserbaseNetwork;
+
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class User_Model {
 
+    NetworkDriver networkDriver = new NetworkDriver();
+    UserbaseNetwork userbaseNetwork = new UserbaseNetwork(networkDriver.network);
 
     public void addUser(String password, String user, String filePath){
         List<List<String>> users = getUsers(filePath);
@@ -33,35 +40,47 @@ public class User_Model {
 
     //TODO Replace with actual algorithm
 
-    public List<List<String>> getUsers(String filePath) {
+    public ArrayList<ArrayList<String>> getUsers(String filePath) {
+        ArrayList<ArrayList<String>> userList = new ArrayList<ArrayList<String>>();
+        try {
+            Statement searchStatement = networkDriver.network.createStatement();
+            ResultSet searchSet = searchStatement.executeQuery("select * from UserTable");
+            //System.out.println("Current userbase:");
+            while (searchSet.next()) {
+                System.out.println(searchSet.getString("username") + ", " + searchSet.getString("password"));
+                ArrayList<String> userID = new ArrayList<>();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //create ArrayList of users+passwords
-        List<List<String>> users_array = new ArrayList<>();
+        //List<List<String>> users_array = new ArrayList<>();
 
         //Read each line of csv file
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
+        //try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            //String line;
 
             //split lines by commas to separate user+password
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                users_array.add(Arrays.asList(values));
-            }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        return users_array;
+            //while ((line = br.readLine()) != null) {
+                //String[] values = line.split(",");
+                //users_array.add(Arrays.asList(values));
+            //}
+        //}
+        //catch(IOException e){
+            //e.printStackTrace();
+        //}
+        //return users_array;
 
 
     }
 
     public boolean approveUser(String username, String password, String filepath){
         //get list of all users
-        List<List<String>> users = getUsers(filepath);
-
+        //List<List<String>> users = getUsers(filepath);
+        if(userbaseNetwork.checkLogin(username,password)){
         //get specific user
-        for (List<String> user : users)
-            if (user.get(0).equals(password) && user.get(1).equals(username)) {
+        //for (List<String> user : users)
+            //if (user.get(0).equals(password) && user.get(1).equals(username)) {
                 return true;
             }
         return false;

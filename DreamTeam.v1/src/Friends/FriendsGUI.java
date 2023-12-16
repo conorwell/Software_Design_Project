@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 
 public class FriendsGUI extends JFrame implements ActionListener {
+    FriendsMain friendsMain = new FriendsMain();
     public FriendsGUI(String user){
         GridBagConstraints gbc = new GridBagConstraints();
         JFrame friendsFrame = new JFrame("DreamTeam.v1.src.Friends List");
@@ -36,7 +37,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 if(e.getSource()==addButton){
                     String userToAdd = (JOptionPane.showInputDialog(null, "Enter a user to add as a friend:","Add Friend",JOptionPane.INFORMATION_MESSAGE));
                     System.out.println(userToAdd);
-                    int requestSent = FriendsMain.sendRequest(user,userToAdd);
+                    int requestSent = friendsMain.sendRequest(user,userToAdd);
                     switch((Integer) requestSent){
                         case 0:JOptionPane.showMessageDialog(null,"Sent friend request to "+userToAdd+".","Success",JOptionPane.INFORMATION_MESSAGE);break;
                         case 1:JOptionPane.showMessageDialog(null,"Error: You are already friends with this user.","Error",JOptionPane.ERROR_MESSAGE);break;
@@ -96,7 +97,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
                         Object answer = JOptionPane.showOptionDialog(null, friendsTable.getValueAt(row,column)+" sent you a friend request.",
                                 "Friend Request", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, requestButtons, requestButtons[0]);
                         switch ((Integer) answer){
-                            case 0:FriendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
+                            case 0:friendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
                                 System.out.println("Table wont update so will have to load to main screen then back in");
                                 friendsFrame.setVisible(false);
                                 FriendsGUI refreshGUI = new FriendsGUI(user);

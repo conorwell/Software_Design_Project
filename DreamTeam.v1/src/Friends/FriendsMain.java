@@ -1,83 +1,68 @@
 package Friends;
 
+import Network.NetworkDriver;
+
 import java.io.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 public class FriendsMain {
 
-    public static void createFriendsList(String username) {    //to be run when an account is created
-        try {String listName = "./FriendsLists/" + username + "_Friends.csv";
-            File friendsList = new File(listName);
-            friendsList.getParentFile().mkdirs();
-            friendsList.createNewFile();
-        } catch (IOException e) {System.out.println("file couldn't be created");}
+    NetworkDriver networkDriver = new NetworkDriver();
+
+    public void createFriendsList(String username) {    //to be run when an account is created
+        try {
+            Statement createStatement = networkDriver.network.createStatement();
+            createStatement.executeUpdate("create table "+username+"Friends (username varchar(50),status varchar(20));");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-    public static int sendRequest(String sendingUser,String recievingUser) {
-        try{Scanner senderListReader = new Scanner(new File("./FriendsLists/"+sendingUser+"_Friends.csv"));
-            while (senderListReader.hasNextLine()) {
-                String[] friendUser = senderListReader.nextLine().split(",");
-                if(friendUser[0].equals(recievingUser)){
-                    if(friendUser[1].equals("friends")){
+
+    public int sendRequest(String sendingUser,String recievingUser) {
+        try{Statement requestStatement = networkDriver.network.createStatement();
+            ResultSet userSet = requestStatement.executeQuery("select * from "+sendingUser+"Friends");
+            while (userSet.next()) {
+                if (recievingUser.equals(userSet.getString("username"))) {
+                    if(userSet.getString("status").equals("friends")){
                         System.out.println("Case: you are already friends with this user");
                         return 1;
-                    }else if(friendUser[1].equals("sent")){
+                    }else if(userSet.getString("status").equals("sent")){
                         System.out.println("Case: you have already sent this user a friend request");
                         return 2;
-                    }else if(friendUser[1].equals("recieved")){
+                    }else if(userSet.getString("status").equals("recieved")){
                         System.out.println("Case: user has already sent you a friend request");
                         //could either auto accept request or just tell the user to go to friends request page
-                        return 3;}}}
-            senderListReader.close();
-            Scanner userbaseReader = new Scanner(new File("users.csv")); //swap to master userbase
-            while (userbaseReader.hasNextLine()) {
-                String[] fileUser = userbaseReader.nextLine().split(",");
-                if(fileUser[0].equals(recievingUser)){ //switch to fileUser[1] if file in password,username order
-                    BufferedWriter requestWriter = new BufferedWriter(new FileWriter("./FriendsLists/"+fileUser[0]+"_Friends.csv",true));
-                    requestWriter.write(sendingUser+",recieved"+"\n");
-                    requestWriter.flush();requestWriter.close();
-                    BufferedWriter requestSave = new BufferedWriter(new FileWriter("./FriendsLists/"+sendingUser+"_Friends.csv",true));
-                    requestSave.write(fileUser[0]+",sent"+"\n");
-                    requestSave.flush();requestSave.close();
-                return 0;}}
-        return 4;
-    }catch(IOException e){}
+                        return 3;
+                        }
+                    }
+                }
+            Statement sendStatement = networkDriver.network.createStatement();
+            sendStatement.executeUpdate("insert into "+recievingUser+"Friends values ('"+sendingUser+"','recieved')");
+            sendStatement.executeUpdate("insert into "+sendingUser+"Friends values ('"+sendingUser+"','sent')");
+        return 0;
+    }catch(Exception e){}
         return 4;
     }
 
-    public static void acceptRequest(String sendingUser,String recievingUser) {
-        handleRequest(sendingUser,recievingUser,true);
-        handleRequest(recievingUser,sendingUser,true);}
-    public static void denyRequest(String sendingUser,String recievingUser){
-        handleRequest(sendingUser,recievingUser,false);
-        handleRequest(recievingUser,sendingUser,false);}
-
-    public static void handleRequest(String sendingUser,String recievingUser,boolean accept){
-        try{ArrayList<String> senderList = new ArrayList<>();
-            int lineNum = 0;
-            File handlerListFile = new File("./FriendsLists/"+sendingUser+"_Friends.csv");
-            Scanner senderListReader = new Scanner(handlerListFile);
-                while (senderListReader.hasNextLine()) {
-                    String currentLine = senderListReader.nextLine();
-                    String[] parsedLine = currentLine.split(",");
-                    if(!(recievingUser.equals(parsedLine[0]))){ //again change to [1] if password,username format
-                        senderList.add(lineNum,currentLine);lineNum++;}}
-            senderListReader.close();
-            handlerListFile.delete();
-            BufferedWriter handlerWriter = new BufferedWriter(new FileWriter("./FriendsLists/"+sendingUser+"_Friends.csv"));
-            for(int i=0;i<senderList.size();i++){
-                handlerWriter.write(senderList.get(i)+"\n");handlerWriter.flush();}
-            if(accept){handlerWriter.write(recievingUser+",friends\n");handlerWriter.flush();}
-            handlerWriter.close();
-        }catch(IOException e){}
-    }
-
-        public static void main (String[]args){
-            FriendsMain friendsMain = new FriendsMain();
-            //friendsMain.sendRequest("guest","big");
-            //friendsMain.acceptRequest("big","bob");
-            //friendsMain.denyRequest("guest","big");
-    }
+    public void acceptRequest(String sendingUser,String recievingUser) {
+        try{
+        Statement acceptStatement = networkDriver.network.createStatement();
+        acceptStatement.executeUpdate("update "+recievingUser+"Friends set status='friends' where username='"+sendingUser+"'");
+        acceptStatement.executeUpdate("update "+sendingUser+"Friends set status='friends' where username='"+recievingUser+"'");
+        }catch(Exception e){
+            System.out.println(e);
+        }}
+    public void denyRequest(String sendingUser,String recievingUser){
+        try{
+            Statement denyStatement = networkDriver.network.createStatement();
+            denyStatement.executeUpdate("delete from "+recievingUser+" where username='"+sendingUser+"'");
+            denyStatement.executeUpdate("delete from "+sendingUser+" where username='"+recievingUser+"'");
+        }catch(Exception e){
+            System.out.println(e);
+        }}
 
 }
 

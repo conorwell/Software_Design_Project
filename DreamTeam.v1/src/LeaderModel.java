@@ -52,7 +52,10 @@ public class LeaderModel {
                     if (i == 0) {
                         defTab.addColumn(g.data.get(i).get(j));
                     } else {
-                        if (!g.data.get(i).get(0).equals(u))
+                        if(g.data.get(i).get(0).equals(u)){
+                            row.add(g.data.get(i).get(j));
+                        }
+                        else if (!g.data.get(i).get(0).equals(u))
                             if(friends.contains(g.data.get(i).get(0))){
                                 row.add(g.data.get(i).get(j));
                             }

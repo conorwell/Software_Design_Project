@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 
 public class homeController {
 
-   Home_GUI home = new Home_GUI();
+    Home_GUI home = new Home_GUI();
     recController rc = new recController();
 
     Add_Workout_GUI aw = new Add_Workout_GUI();
@@ -72,6 +72,19 @@ public class homeController {
                 if (s.equals("Friends")) {
                     System.out.println("friends screen requested");
                     Friends.FriendsGUI friendsGUI = new Friends.FriendsGUI(username);
+                }
+            }
+        });
+
+        home.leaderButton.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Leaderboard")) {
+                    System.out.println("leaderboard screen requested");
+                    LeaderBoardController leader = new LeaderBoardController();
+                    leader.leaderboard(username);
                 }
             }
         });

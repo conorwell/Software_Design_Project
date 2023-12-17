@@ -22,38 +22,8 @@ public class LeaderBoardGUI {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         f.add(title, gbc);
 
-        File workouts = new File("workouts.csv"); //creating file to read from
-        DefaultTableModel defTab = new DefaultTableModel(){ //creating table model
-            @Override
-            public boolean isCellEditable(int row, int column) { //declaring table is not editable
-                //all cells false
-                return false;
-            }
-        };
-
-        try{ //reading csv file
-            CSV_Parser read = new CSV_Parser();
-            data = read.readCSV(workouts);
-
-            for(int i = 0; i<data.size(); i++){
-                Vector row = new Vector();
-                for(int j = 0; j<data.get(i).size(); j++){
-                    if(i==0){
-                        defTab.addColumn(data.get(i).get(j));
-                    }else{
-                        if(!data.get(i).get(0).equals(u))
-                            row.add(data.get(i).get(j));
-                    }
-                }
-                if(i!= 0){
-                    defTab.addRow(row); //adding data to table
-                }
-
-            }
-
-        }catch(Exception e){
-            System.out.println("It was this");
-        }
+        LeaderModel m = new LeaderModel();
+        DefaultTableModel defTab = m.getWorkouts(u,this);
 
         JTable tab = new JTable(); //adding table
         tab.setModel(defTab);

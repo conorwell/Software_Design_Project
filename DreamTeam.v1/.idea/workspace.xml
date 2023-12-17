@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Create_Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Create_Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Friends/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/FriendsGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Friends/FriendsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/FriendsMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Load_Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Load_Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User_Model.java" afterDir="false" />
-    </list>
+    <list default="true" id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="integration part 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,17 +24,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "C:/Users/olson/Downloads/jdatepicker-1.3.4.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/olson/Downloads/jdatepicker-1.3.4.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -52,6 +44,25 @@
       <option name="presentableId" value="Default" />
       <updated>1702758874406</updated>
     </task>
+    <task id="LOCAL-00001" summary="integration part 2">
+      <created>1702762495026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702762495026</updated>
+    </task>
+    <task id="LOCAL-00002" summary="integration part 2">
+      <created>1702762613769</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702762613769</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="integration part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="integration part 2" />
   </component>
 </project>

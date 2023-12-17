@@ -20,7 +20,7 @@ class Workout_ModelTest {
         durations.add("10");
         durations.add("50");
         durations.add("40");
-        Workout_Model model = new Workout_Model();
+        Workout_Model model = Workout_Model.getInstance();
         model.addWorkouts("conorwell", "test", "felt good today", "100", date, exercises, durations);
         model.addWorkouts("zebman", "none", "N/A", "100", date, exercises, durations);
         List<List<String>>workouts = model.getWorkouts();
@@ -47,6 +47,12 @@ class Workout_ModelTest {
         assertEquals(workouts.get(1).get(8), "50");
         assertEquals(workouts.get(1).get(9), "pull");
         assertEquals(workouts.get(1).get(10), "40");
+    }
+
+    @Test
+    void singleton(){
+        Workout_Model wm = Workout_Model.getInstance();
+        assertEquals(wm, Workout_Model.getInstance());
     }
 
 

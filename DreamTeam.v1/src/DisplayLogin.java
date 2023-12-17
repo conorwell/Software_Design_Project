@@ -17,7 +17,7 @@ public class DisplayLogin extends Canvas{
 
     public void init(){
         open = true;
-        f.setSize(400,500);
+        //f.setSize(400,500);
         title.setEditable(false);
         btn.setSize(50,40);
         username.setText("username");
@@ -51,6 +51,8 @@ public class DisplayLogin extends Canvas{
         f.add(password);
         f.add(btn);
         f.add(noUser);
+        f.pack();
+        f.setSize(400,500);
 
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

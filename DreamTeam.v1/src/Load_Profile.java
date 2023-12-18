@@ -6,7 +6,7 @@ public class Load_Profile {
 
     DisplayLogin f= new DisplayLogin();
     homeController h = new homeController();
-    User_Model user = User_Model.getInstance();
+    User_Model user = new User_Model();
     private String globUser;
 
     public void login(){
@@ -19,7 +19,7 @@ public class Load_Profile {
                 String s = actionEvent.getActionCommand();
 
                 if (s.equals("Enter")) {
-                    boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
+                    boolean approver = user.approveUser(f.username.getText(), f.password.getText());
                     if (approver){
                         String user = f.username.getText();
                         globUser = user;

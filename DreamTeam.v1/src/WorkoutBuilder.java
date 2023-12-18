@@ -1,7 +1,5 @@
-public class WorkoutBuilder {
-    public Workout workoutBuilder(){
-        Workout builtWorkout = null;
-    //TODO Replace with actual algorithm
-        return builtWorkout;
-    }
+import java.util.ArrayList;
+
+ abstract class WorkoutBuilder {
+     abstract Workout workoutBuilder(String user, String name, ArrayList<String> exer, ArrayList<String> dur, String com, String date);
 }

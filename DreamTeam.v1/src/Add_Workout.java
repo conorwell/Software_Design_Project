@@ -16,30 +16,13 @@ public class Add_Workout {
 
     //method that constructs an array list and returns it from the data from the gui
     public Workout addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
-
-
-        int total = 0;
-        ArrayList<Integer> durArr = new ArrayList<Integer>();
-        for(String s : exerDur){
-
-            int temp = Integer.parseInt(s);
-            durArr.add(temp);
-            total = total + temp;
-        }
-        Workout w = new Workout(user,wrkName,exerc,durArr,comment,date);
-        return w;
+        WorkoutBuilder_Concrete newWork = new WorkoutBuilder_Concrete();
+        return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
     public Workout editExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
-        int total = 0;
-        ArrayList<Integer> durArr = new ArrayList<Integer>();
-        for(String s : exerDur){
-            int temp = Integer.parseInt(s);
-            durArr.add(temp);
-            total = total + temp;
-        }
 
-        Workout newWork = new Workout(user,wrkName,exerc,durArr,comment,date);
-        return newWork;
+        WorkoutBuilder_Concrete newWork = new WorkoutBuilder_Concrete();
+        return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
 
     public void guiController(String username){
@@ -77,7 +60,7 @@ public class Add_Workout {
                             String workName = addGUI.workoutName.getText();
                             String comment = addGUI.workoutCom.getText();
                             datedate = (Date) addGUI.datePicker.getModel().getValue();
-                            String dateString = date;
+                            String dateString = datedate.toString();
                             add.addExercise(username,workName,comment, dateString,exerciseArr,durationArr);//logic for
                             addGUI.f.dispose();
                             JOptionPane.showMessageDialog(null, "Workout Completed :)");

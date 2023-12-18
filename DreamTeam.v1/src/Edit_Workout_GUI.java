@@ -15,7 +15,7 @@ public class Edit_Workout_GUI extends JFrame implements ActionListener {
     JLabel exLabel;
     JTextField workoutCom;
 
-    JFrame f = new JFrame();
+    JFrame fred = new JFrame();
 
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
 

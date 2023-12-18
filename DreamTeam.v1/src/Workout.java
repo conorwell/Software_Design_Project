@@ -51,5 +51,7 @@ public class Workout{
     public int getTotalDuration() {
         return this.totalDuration;
     }
+
+
 }
 

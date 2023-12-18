@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="integration part 2">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="removing duplicate methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Friends/FriendsGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/FriendsGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Friends/FriendsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Friends/FriendsMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Network/NetworkDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Network/NetworkDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Network/UserbaseNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Workout_Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Workout_Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Workout_Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Workout_Viewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/workoutReccomender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/workoutReccomender.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,12 +89,28 @@
       <option name="project" value="LOCAL" />
       <updated>1702792269642</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="bugfixed usermodel, integrating workout model">
+      <created>1702863535047</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702863535047</updated>
+    </task>
+    <task id="LOCAL-00005" summary="removing duplicate methods">
+      <created>1702863758210</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702863758210</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="integration part 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="integration part 2" />
+    <MESSAGE value="bugfixed usermodel, integrating workout model" />
+    <MESSAGE value="removing duplicate methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing duplicate methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

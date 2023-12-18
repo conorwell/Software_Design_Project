@@ -16,8 +16,9 @@ class WorkoutTest {
         Durations.add(15);
         Durations.add(30);
         Durations.add(45);
-        Workout test = new Workout("test_workout",Exercises,Durations,"leg day","10/27/12");
+        Workout test = new Workout("tester","test_workout",Exercises,Durations,"leg day","10/27/12");
 
+        assertEquals(test.getUsername(), "test");
         assertEquals(test.getName(),"test_workout");
         assertEquals(test.getComment(), "leg day");
         assertEquals(test.getExercises(), Exercises);

@@ -11,6 +11,8 @@ public class User implements UserInterface{
         this.username = username;
         this.password = password;
         this.Friends = new ArrayList<User>();
+        Workout_Model wm = Workout_Model.getInstance();
+        wm.createWorkoutsList(username);
     }
 
     public void addFriend(User friend){

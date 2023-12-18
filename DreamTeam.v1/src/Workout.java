@@ -7,11 +7,13 @@ public class Workout{
     private ArrayList<Integer> durations;
     private String comment;
     private String date;
+    private String username;
     private int totalDuration;
 
 
-    public Workout(String name, ArrayList<String> exercise, ArrayList<Integer> durations, String comment, String date){
+    public Workout(String username, String name, ArrayList<String> exercise, ArrayList<Integer> durations, String comment, String date){
         this.name = name;
+        this.username = username;
         this.exercises = exercise;
         this.durations = durations;
         this.comment = comment;
@@ -20,7 +22,6 @@ public class Workout{
         for(int duration: this.durations){
             this.totalDuration += duration;
         }
-        return;
     }
     public String getName(){
         return this.name;
@@ -42,8 +43,14 @@ public class Workout{
         return this.date;
     }
 
+    public String getUsername(){
+        return this.username;
+    }
+
     public int getTotalDuration() {
         return this.totalDuration;
     }
+
+
 }
 

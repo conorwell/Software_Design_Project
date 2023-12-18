@@ -9,7 +9,11 @@ import java.text.ParseException;
 import java.util.*;
 
 
-public class Workout_Model {
+public final class Workout_Model {
+    public static final Workout_Model wm = new Workout_Model();
+    public static Workout_Model getInstance(){
+        return wm;
+    }
     NetworkDriver networkDriver = new NetworkDriver();
     public void createWorkoutsList(String username) {    //to be run when an account is created
         try {

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User {
+public class User implements UserInterface{
 
     private String username;
 
@@ -11,6 +11,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.Friends = new ArrayList<User>();
+        Workout_Model wm = Workout_Model.getInstance();
+        wm.createWorkoutsList(username);
     }
 
     public void addFriend(User friend){

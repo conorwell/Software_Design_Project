@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class User_Model {
+
+public final class User_Model {
+    public static final User_Model um = new User_Model();
+    public static User_Model getInstance(){
+        return um;
+    }
     NetworkDriver networkDriver = new NetworkDriver();
 
     public void addUser(String username, String password){

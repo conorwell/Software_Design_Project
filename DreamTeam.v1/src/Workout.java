@@ -22,7 +22,6 @@ public class Workout{
         for(int duration: this.durations){
             this.totalDuration += duration;
         }
-        return;
     }
     public String getName(){
         return this.name;

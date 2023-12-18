@@ -5,10 +5,9 @@ import java.awt.event.ActionEvent;
 
 public class homeController {
 
-   Home_GUI home = new Home_GUI();
+    Home_GUI home = new Home_GUI();
     recController rc = new recController();
-
-    Add_Workout_GUI aw = new Add_Workout_GUI();
+    Add_Workout aw = new Add_Workout();
 
 
 
@@ -44,7 +43,7 @@ public class homeController {
 
                 if (s.equals("Add Workout")) {
                     System.out.println("add workout screen requested");
-                    aw.Add_Workout_GUI(username);
+                    aw.guiController(username);
                 }
             }
         });

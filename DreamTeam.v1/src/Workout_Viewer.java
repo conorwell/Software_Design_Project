@@ -94,7 +94,8 @@ public class Workout_Viewer extends JFrame implements ActionListener {
                             String value = tab.getModel().getValueAt(row, 4).toString();
                             String com = tab.getModel().getValueAt(row, 2).toString();
                             String nam = tab.getModel().getValueAt(row, 1).toString();
-                                Edit_Workout_GUI ed = new Edit_Workout_GUI(value, com, nam, usernam);
+                            Edit_Workout_Controller ed = new Edit_Workout_Controller();
+                            ed.editListen(value, com, nam, usernam);
                             fe.dispose();
                         }else{
                             JOptionPane.showMessageDialog(null, "Please select the workout you wish to edit");
@@ -102,7 +103,6 @@ public class Workout_Viewer extends JFrame implements ActionListener {
                     }
                 }
         );
-
         fe.pack();
         fe.setLocationRelativeTo(null);
         fe.setVisible(true);

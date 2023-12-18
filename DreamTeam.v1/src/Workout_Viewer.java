@@ -15,6 +15,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
     private String usernam;
     private ArrayList<ArrayList<String>> data;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
+    Workout_Model workoutModel = new Workout_Model();
     public Workout_Viewer(String u){
         this.usernam = u;
         JFrame fe = new JFrame("Workout Viewer");
@@ -43,9 +44,8 @@ public class Workout_Viewer extends JFrame implements ActionListener {
             }
         };
 
-        try{ //reading csv file
-            CSV_Parser read = new CSV_Parser();
-            data = read.readCSV(workouts);
+        try{
+            data = workoutModel.getWorkouts("username"); //need to get active username
 
             for(int i = 0; i<data.size(); i++){
                 Vector row = new Vector();
@@ -53,13 +53,12 @@ public class Workout_Viewer extends JFrame implements ActionListener {
                     if(i==0){
                         defTab.addColumn(data.get(i).get(j));
                     }else{
-                        if(data.get(i).get(0).equals(usernam))
                             row.add(data.get(i).get(j));
                     }
                 }
-                if(i!= 0){
+                //if(i!= 0){
                     defTab.addRow(row); //adding data to table
-                }
+                //}
 
             }
 

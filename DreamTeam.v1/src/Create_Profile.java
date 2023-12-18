@@ -11,6 +11,7 @@ public class Create_Profile {
     DisplayCreateProfile f= new DisplayCreateProfile();
     Load_Profile l = new Load_Profile();
     User_Model user = new User_Model();
+    Workout_Model workoutModel = new Workout_Model();
     FriendsMain friendsMain = new FriendsMain();
 
     public void create(){
@@ -29,6 +30,7 @@ public class Create_Profile {
                     if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
                         System.out.println(f.username.getText());
                         user.addUser(f.username.getText(),f.password.getText());
+                        workoutModel.createWorkoutsList(f.username.getText());
                         friendsMain.createFriendsList(username);
                         System.out.println("enter pressed");
                         f.close();

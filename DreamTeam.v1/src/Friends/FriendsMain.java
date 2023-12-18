@@ -14,16 +14,31 @@ public class FriendsMain {
     public void createFriendsList(String username) {    //to be run when an account is created
         try {
             Statement createStatement = networkDriver.network.createStatement();
-            createStatement.executeUpdate("create table "+username+"Friends (username varchar(50),status varchar(20));");
+            createStatement.executeUpdate("create table "+username+"friends (username varchar(50),status varchar(20));");
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    public ArrayList getFriendsList(String username) {
+        ArrayList<String> friendsList = new ArrayList<>();
+        try {
+            Statement getStatement = networkDriver.network.createStatement();
+            ResultSet userSet = getStatement.executeQuery("select * from "+username+"friends");
+            while (userSet.next()) {
+                String friend = userSet.getString("username")+","+userSet.getString("status");
+                friendsList.add(friend);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return friendsList;
+    }
+
 
     public int sendRequest(String sendingUser,String recievingUser) {
         try{Statement requestStatement = networkDriver.network.createStatement();
-            ResultSet userSet = requestStatement.executeQuery("select * from "+sendingUser+"Friends");
+            ResultSet userSet = requestStatement.executeQuery("select * from "+sendingUser+"friends");
             while (userSet.next()) {
                 if (recievingUser.equals(userSet.getString("username"))) {
                     if(userSet.getString("status").equals("friends")){
@@ -40,8 +55,8 @@ public class FriendsMain {
                     }
                 }
             Statement sendStatement = networkDriver.network.createStatement();
-            sendStatement.executeUpdate("insert into "+recievingUser+"Friends values ('"+sendingUser+"','recieved')");
-            sendStatement.executeUpdate("insert into "+sendingUser+"Friends values ('"+sendingUser+"','sent')");
+            sendStatement.executeUpdate("insert into "+recievingUser+"friends values ('"+sendingUser+"','recieved')");
+            sendStatement.executeUpdate("insert into "+sendingUser+"friends values ('"+recievingUser+"','sent')");
         return 0;
     }catch(Exception e){}
         return 4;
@@ -50,16 +65,16 @@ public class FriendsMain {
     public void acceptRequest(String sendingUser,String recievingUser) {
         try{
         Statement acceptStatement = networkDriver.network.createStatement();
-        acceptStatement.executeUpdate("update "+recievingUser+"Friends set status='friends' where username='"+sendingUser+"'");
-        acceptStatement.executeUpdate("update "+sendingUser+"Friends set status='friends' where username='"+recievingUser+"'");
+        acceptStatement.executeUpdate("update "+recievingUser+"friends set status='friends' where username='"+sendingUser+"'");
+        acceptStatement.executeUpdate("update "+sendingUser+"friends set status='friends' where username='"+recievingUser+"'");
         }catch(Exception e){
             System.out.println(e);
         }}
     public void denyRequest(String sendingUser,String recievingUser){
         try{
             Statement denyStatement = networkDriver.network.createStatement();
-            denyStatement.executeUpdate("delete from "+recievingUser+" where username='"+sendingUser+"'");
-            denyStatement.executeUpdate("delete from "+sendingUser+" where username='"+recievingUser+"'");
+            denyStatement.executeUpdate("delete from "+recievingUser+"friends where username='"+sendingUser+"'");
+            denyStatement.executeUpdate("delete from "+sendingUser+"friends where username='"+recievingUser+"'");
         }catch(Exception e){
             System.out.println(e);
         }}

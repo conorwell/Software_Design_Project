@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class workoutReccomender {
@@ -10,8 +11,8 @@ public class workoutReccomender {
 
         workoutReccomender wr = new workoutReccomender();
         Workout_Model model = new Workout_Model();
-        List<List<String>> workouts = model.getWorkouts(username);
-        List<String> recent = workouts.get(workouts.size()-1);
+        ArrayList<ArrayList<String>> workouts = model.getWorkouts(username); //changed from list for integration
+        ArrayList<String> recent = workouts.get(workouts.size()-1);
         String prompt = "In my last workout, I did these exercises: ";
         for(int i=5;i<recent.size();i+=2){
             prompt += recent.get(i) +",";

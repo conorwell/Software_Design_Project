@@ -4,19 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="preparing to integrate" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+
+
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+
   <component name="ProjectId" id="2ZdjVAqrpOdUT7VmZ2kQFmHFidW" />
+
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -24,6 +30,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -61,6 +68,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="56f7e427-032f-41cc-9668-e308a782884e" name="Changes" comment="" />
+
       <created>1702758874406</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -109,6 +117,7 @@
       <updated>1702866367447</updated>
     </task>
     <option name="localTasksCounter" value="7" />
+
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

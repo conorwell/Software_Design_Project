@@ -75,5 +75,18 @@ public class homeController {
             }
         });
 
+        home.leaderButton.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Leaderboard")) {
+                    System.out.println("leaderboard screen requested");
+                    LeaderBoardController leader = new LeaderBoardController();
+                    leader.leaderboard(username);
+                }
+            }
+        });
+
     }
 }

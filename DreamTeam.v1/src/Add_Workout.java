@@ -18,11 +18,19 @@ public class Add_Workout {
     //method that constructs an array list and returns it from the data from the gui
     public Workout addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
         WorkoutBuilder newWork = new WorkoutBuilder_Concrete();
+        Workout_Model wm = new Workout_Model();
+        wm.addWorkouts(newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date));
         return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
     public Workout editExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
 
         WorkoutBuilder newWork = new WorkoutBuilder_Concrete();
+        Workout_Model wm = new Workout_Model();
+        try {
+            wm.editWorkout(newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
 

@@ -14,7 +14,17 @@ public class Workout_Viewer_Controller {
         //table and file
 
         try {
+            ArrayList<String> columnn = new ArrayList<>();
+            columnn.add("Name");
+            columnn.add("Comment");
+            columnn.add("TotDur");
+            columnn.add("Date");
+            columnn.add("Exer1");
+            columnn.add("Dur1");
+            columnn.add("Exer2");
+            columnn.add("Dur2");
             ArrayList<ArrayList<String>> data = wm.getWorkouts(username); //need to get active username
+            data.add(0,columnn);
 
             for (int i = 0; i < data.size(); i++) {
                 Vector row = new Vector();

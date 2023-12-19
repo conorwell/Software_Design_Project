@@ -90,5 +90,20 @@ public class homeController {
             }
         });
 
+
+        home.logout.addActionListener(new AbstractAction()  {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Logout")) {
+                    System.out.println("logout requested");
+                    home.f.dispose();
+                    Load_Profile load = new Load_Profile();
+                    load.login();
+                }
+            }
+        });
+
+
     }
 }

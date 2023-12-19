@@ -14,7 +14,7 @@ public class NetworkDriver {
     public void startUp() {
         try {Class.forName("com.mysql.cj.jdbc.Driver");
             network = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:8889/dreamteamv1", "root", "root");
+                    "jdbc:mysql://localhost:8889/mysql", "root", "root");
                                 //Connection steps:
                                 //establish a new DB browser connection at host:localhost, username:root, password:root
                                 //replace '8889' with your port if not connecting through mamp (in both connection and code above)

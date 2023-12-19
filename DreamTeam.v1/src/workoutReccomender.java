@@ -13,11 +13,13 @@ public class workoutReccomender {
         Workout_Model model = new Workout_Model();
         ArrayList<ArrayList<String>> workouts = model.getWorkouts(username); //changed from list for integration
         ArrayList<String> recent = workouts.get(workouts.size()-1);
-        String prompt = "In my last workout, I did these exercises: ";
-        for(int i=5;i<recent.size();i+=2){
+        String prompt = "Here was my last workout, complete with the name I assigned it, comments regarding it, and " +
+                "each exercise I did with the duration of that exercise: ";
+        for(int i=0;i<recent.size();i++){
             prompt += recent.get(i) +",";
         }
-        prompt += ". In 100 words or less, what do you reccomend I train in my next sesson?";
+        prompt += ". In 100 words or less, what do you recommend I train in my next session, " +
+                "based on my last workout?";
         System.out.println(recent);
         System.out.println(prompt);
         String response = wr.chatGPT(prompt);

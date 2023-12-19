@@ -26,6 +26,7 @@ public class LeaderBoardGUI {
 
         LeaderModel m = new LeaderModel();
         ArrayList<ArrayList<String>> friendWorkouts = m.getFriendWorkouts(u,this);
+        System.out.println(friendWorkouts);
         ArrayList<ArrayList<String>> workouts = m.getOwnWorkouts(u,this);
         DefaultTableModel defTab = new DefaultTableModel();
 

@@ -4,7 +4,8 @@ public class LeaderBoardControllerTest {
     @Test
     void leaderboard(){
         LeaderBoardController leader = new LeaderBoardController();
-        leader.f.init("sebolson");
+        User user = new User("sebolson", "password");
+        leader.f.init(user);
         assertTrue(leader.f.f.isVisible());
     }
 }

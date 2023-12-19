@@ -14,11 +14,11 @@ public class homeController {
 
     public static void main(String[] args){
         homeController hc = new homeController();
-        hc.homePage("");
+        //hc.homePage("");
 
     }
-    public void homePage(String username){
-        home.init(username);
+    public void homePage(User u){
+        home.init(u.getUsername());
         home.recBtn.addActionListener(new AbstractAction() {
 
             @Override
@@ -29,7 +29,7 @@ public class homeController {
                 if (s.equals("Recommender")) {
                     System.out.println("rec screen requested");
 
-                    rc.getRec(username);
+                    rc.getRec(u.getUsername());
 
                 }
             }
@@ -44,7 +44,7 @@ public class homeController {
 
                 if (s.equals("Add Workout")) {
                     System.out.println("add workout screen requested");
-                    aw.guiController(username);
+                    aw.guiController(u.getUsername());
                 }
             }
         });
@@ -60,7 +60,7 @@ public class homeController {
                 if (s.equals("View Workouts")) {
                     System.out.println("add workout screen requested");
                     Workout_Viewer_Controller w = new Workout_Viewer_Controller();
-                    w.addData(username);
+                    w.addData(u.getUsername());
                 }
             }
         });
@@ -72,7 +72,7 @@ public class homeController {
                 String s = actionEvent.getActionCommand();
                 if (s.equals("Friends")) {
                     System.out.println("friends screen requested");
-                    Friends.FriendsGUI friendsGUI = new Friends.FriendsGUI(username);
+                    Friends.FriendsGUI friendsGUI = new Friends.FriendsGUI(u.getUsername());
                 }
             }
         });
@@ -85,7 +85,7 @@ public class homeController {
                 if (s.equals("Leaderboard")) {
                     System.out.println("leaderboard screen requested");
                     LeaderBoardController leader = new LeaderBoardController();
-                    leader.leaderboard(username);
+                    leader.init(u);
                 }
             }
         });

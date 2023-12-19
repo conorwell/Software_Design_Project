@@ -21,8 +21,8 @@ public class Load_Profile {
                 if (s.equals("Enter")) {
                     boolean approver = user.approveUser(f.username.getText(), f.password.getText());
                     if (approver){
-                        String user = f.username.getText();
-                        globUser = user;
+                        User user = new User(f.username.getText(),f.password.getText());
+                        globUser = user.getUsername();
                         System.out.println("welcome " + f.username.getText());
 
 

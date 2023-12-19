@@ -7,32 +7,26 @@ public class User_ModelTest {
     @org.junit.jupiter.api.Test
     void addUser_getUser() {
         User_Model model = User_Model.getInstance();
-        model.addUser("conorwell","12345");
-        model.addUser("sebo","123");
-        model.addUser("heny","560");
-        List<List<String>> users = model.getUsers("DreamTeam.v1/tests/testUsers.csv");
-        assertEquals(users.get(0).get(0), "conorwell");
+        User user1= new User("testuser1","12345");
+        User user2= new User("testuser2","123");
+        model.addUser(user1);
+        model.addUser(user2);
+        List<List<String>> users = model.getUsers();
+        assertEquals(users.get(0).get(0), "testuser1");
         assertEquals(users.get(0).get(1), "12345");
-        assertEquals(users.get(1).get(0), "sebo");
+        assertEquals(users.get(1).get(0), "testuser2");
         assertEquals(users.get(1).get(1), "123");
-        assertEquals(users.get(2).get(0), "heny");
-        assertEquals(users.get(2).get(1), "560");
     }
 
     @org.junit.jupiter.api.Test
     void editUser() {
             User_Model model = User_Model.getInstance();
-            model.addUser("conorwell","12345");
-            model.addUser("sebo","123");
-            model.addUser("heny","560");
-            List<List<String>> users = model.getUsers("DreamTeam.v1/tests/testUsers.csv");
-            model.editUser("560","heny","567","henry", "DreamTeam.v1/tests/testUsers.csv");
-            List<List<String>> newUsers = model.getUsers("testUsers.csv");
-            assertEquals(newUsers.get(0).get(0), "conorwell");
-            assertEquals(newUsers.get(0).get(1), "12345");
-            assertEquals(newUsers.get(1).get(0), "sebo");
-            assertEquals(newUsers.get(1).get(1), "123");
-            assertEquals(newUsers.get(2).get(0), "henry");
+            User user3= new User("testuser3","560");
+            model.addUser(user3);
+            List<List<String>> users = model.getUsers();
+            model.editUser("testuser3","567","testUser3");
+            List<List<String>> newUsers = model.getUsers();
+            assertEquals(newUsers.get(2).get(0), "testUser3");
             assertEquals(newUsers.get(2).get(1), "567");
 
         }

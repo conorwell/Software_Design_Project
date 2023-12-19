@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class Workout_Viewer_Controller {
     Workout_Viewer wv = new Workout_Viewer();
-    Workout_Model wm = new Workout_Model();
+    Workout_Model wm = Workout_Model.getInstance();
 
     public void addData(String username) {
         wv.Workout_Viewer_Run(username);

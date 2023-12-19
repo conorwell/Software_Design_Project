@@ -12,13 +12,13 @@ import java.util.Date;
 import java.util.Properties;
 
 public class Add_Workout_GUI extends JFrame implements ActionListener {
-     JTextField  workoutName;
-     JComboBox<String>  exerciseEntry;
-     JComboBox<Integer>  durationEntry;
-     JButton completeWorkout;
-     JButton addNewExercise;
-     JTextArea dispTextDur;
-     JTextArea dispTextExer;
+    JTextField  workoutName;
+    JComboBox<String>  exerciseEntry;
+    JComboBox<Integer>  durationEntry;
+    JButton completeWorkout;
+    JButton addNewExercise;
+    JTextArea dispTextDur;
+    JTextArea dispTextExer;
     JTextField workoutCom;
     JDatePanelImpl datePanel;
     JDatePickerImpl datePicker;
@@ -87,8 +87,8 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
-         datePanel = new JDatePanelImpl(model,p);
-         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePanel = new JDatePanelImpl(model,p);
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         f.add(datePicker, gbc);
 
         //label for exercise input

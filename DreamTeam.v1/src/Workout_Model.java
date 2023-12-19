@@ -84,7 +84,7 @@ public final class Workout_Model {
         String username = workout.getUsername();
         String date = workout.getdate();
         try{Statement addStatement = networkDriver.network.createStatement();
-            addStatement.executeUpdate("delete from "+username+"workouts where date ="+"'"+date+"'");
+            addStatement.executeUpdate("delete from "+username+"workouts where date = '"+date+"'");
             Workout_Model model = Workout_Model.getInstance();
             model.addWorkouts(workout);
         }catch(Exception e){

@@ -1,5 +1,5 @@
 import java.util.List;
 
 public interface SubjectInterface {
-    void leaderboard(User u);
+    void init(User u);
 }

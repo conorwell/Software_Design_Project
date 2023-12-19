@@ -85,7 +85,7 @@ public class homeController {
                 if (s.equals("Leaderboard")) {
                     System.out.println("leaderboard screen requested");
                     LeaderBoardController leader = new LeaderBoardController();
-                    leader.leaderboard(u);
+                    leader.init(u);
                 }
             }
         });

@@ -15,6 +15,8 @@ public class Home_GUI extends JFrame{
     JButton friendButton = new JButton();
     JButton leaderButton = new JButton();
     JButton logout = new JButton();
+
+    JButton statsButton = new JButton();
     public void init(String username){
 
         f.setSize(400,500);
@@ -44,6 +46,10 @@ public class Home_GUI extends JFrame{
         leaderButton.setText("Leaderboard");
         leaderButton.setSize(50,40);
         f.add(leaderButton);
+
+        statsButton.setText("Stats");
+        statsButton.setSize(50,40);
+        f.add(statsButton);
 
         logout.setText("Logout");
         logout.setSize(50,40);

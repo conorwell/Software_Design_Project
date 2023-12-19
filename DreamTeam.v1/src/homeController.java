@@ -28,9 +28,7 @@ public class homeController {
 
                 if (s.equals("Recommender")) {
                     System.out.println("rec screen requested");
-
                     rc.getRec(username);
-
                 }
             }
         });
@@ -90,6 +88,18 @@ public class homeController {
             }
         });
 
+        home.statsButton.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Stats")) {
+                    System.out.println("stats screen requested");
+                    statsController statistics = new statsController();
+                    statistics.viewStats(username);
+                }
+            }
+        });
 
         home.logout.addActionListener(new AbstractAction()  {
             @Override

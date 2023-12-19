@@ -1,35 +1,36 @@
+import Network.NetworkDriver;
+
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Vector;
 
 public class LeaderModel {
-
+    NetworkDriver networkDriver = new NetworkDriver();
     public ArrayList<String> getFriends(String u){
-        ArrayList<String> friendsArray = new ArrayList<>();
-        File friendsList = new File("./FriendsLists/"+u+"_Friends.csv");
-
-        try{
-            Scanner senderListReader = new Scanner(friendsList);
-            while (senderListReader.hasNextLine()) {
-                String[] currentLine = senderListReader.nextLine().split(",");
-                String friendName = currentLine[0];
-                String friendStatus = currentLine[1];
-                if (friendStatus.equals("friends")) {
-                    friendsArray.add(friendName);
-                }
-
+        ArrayList<String> friendsList = new ArrayList<>();
+        try {
+            Statement getStatement = networkDriver.network.createStatement();
+            ResultSet userSet = getStatement.executeQuery("select * from "+u+"friends");
+            while (userSet.next()) {
+                String friend = userSet.getString("username");
+                friendsList.add(friend);
             }
-        }catch(FileNotFoundException e){System.out.println("File not found. No friends???");}
-
-
-        return friendsArray;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(friendsList);
+        return friendsList;
     }
 
-    public DefaultTableModel getWorkouts(String u,LeaderBoardGUI g){
+
+
+    public ArrayList<ArrayList<String>> getOwnWorkouts(String u,LeaderBoardGUI g){
         DefaultTableModel defTab = new DefaultTableModel(){ //creating table model
             @Override
             public boolean isCellEditable(int row, int column) { //declaring table is not editable
@@ -40,38 +41,68 @@ public class LeaderModel {
 
 
         ArrayList<String> friends = getFriends(u);
-        File workouts = new File("workouts.csv"); //creating file to read from
 
-        try { //reading csv file
-            CSV_Parser read = new CSV_Parser();
-            g.data = read.readCSV(workouts);
 
-            for (int i = 0; i < g.data.size(); i++) {
-                Vector row = new Vector();
-                for (int j = 0; j < g.data.get(i).size(); j++) {
-                    if (i == 0) {
-                        defTab.addColumn(g.data.get(i).get(j));
-                    } else {
-                        if(g.data.get(i).get(0).equals(u)){
-                            row.add(g.data.get(i).get(j));
-                        }
-                        else if (!g.data.get(i).get(0).equals(u))
-                            if(friends.contains(g.data.get(i).get(0))){
-                                row.add(g.data.get(i).get(j));
-                            }
-
-                    }
+        ArrayList<ArrayList<String>> userWorkouts = new ArrayList<>();
+        try {
+            Statement getWorkoutStatement = networkDriver.network.createStatement();
+            ResultSet workoutSet = getWorkoutStatement.executeQuery("select * from "+u+"workouts where exercise is null;");
+            while (workoutSet.next()) {
+                ArrayList<String> workout = new ArrayList<>();
+                workout.add(workoutSet.getString("name"));
+                workout.add(workoutSet.getString("comment"));
+                workout.add(workoutSet.getString("total_duration"));
+                workout.add(workoutSet.getString("date"));
+                Statement getExerciseStatement = networkDriver.network.createStatement();
+                ResultSet exerciseSet = getExerciseStatement.executeQuery("select * from "+u+"workouts where exercise is not null and name='"+workout.get(0)+"';");
+                while (exerciseSet.next()) {
+                    workout.add(exerciseSet.getString("exercise"));
+                    workout.add(exerciseSet.getString("exercise_duration"));
                 }
-                if (i != 0) {
-                    defTab.addRow(row); //adding data to table
-                }
+                userWorkouts.add(workout);
 
             }
-        }catch(Exception e){
-            System.out.println("It was this");
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        System.out.println(userWorkouts);
+        return userWorkouts;
+    }
 
 
-        return defTab;
+    public ArrayList<ArrayList<String>> getFriendWorkouts(String u,LeaderBoardGUI g){
+
+
+        ArrayList<String> friends = getFriends(u);
+
+
+        ArrayList<ArrayList<String>> userWorkouts = new ArrayList<>();
+        ArrayList<String> workout = new ArrayList<>();
+        try {
+            Statement getWorkoutStatement = networkDriver.network.createStatement();
+            for (int i=0;i<friends.size();i++){
+                ResultSet workoutSet = getWorkoutStatement.executeQuery("select * from "+friends.get(i)+"workouts where exercise is null;");
+                while (workoutSet.next()) {
+                    workout.add(friends.get(i));
+                    workout.add(workoutSet.getString("name"));
+                    workout.add(workoutSet.getString("comment"));
+                    workout.add(workoutSet.getString("total_duration"));
+                    workout.add(workoutSet.getString("date"));
+                    Statement getExerciseStatement = networkDriver.network.createStatement();
+                    ResultSet exerciseSet = getExerciseStatement.executeQuery("select * from "+u+"workouts where exercise is not null and name='"+workout.get(0)+"';");
+                    while (exerciseSet.next()) {
+                        workout.add(exerciseSet.getString("exercise"));
+                        workout.add(exerciseSet.getString("exercise_duration"));
+                    }
+                    userWorkouts.add(workout);
+
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(userWorkouts);
+        return userWorkouts;
     }
 }

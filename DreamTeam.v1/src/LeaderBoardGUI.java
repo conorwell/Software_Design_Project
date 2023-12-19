@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class LeaderBoardGUI {
@@ -21,9 +22,33 @@ public class LeaderBoardGUI {
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         f.add(title, gbc);
+        ArrayList<String> columnNames = new ArrayList<String>(Arrays.asList("user","name","com","dur","date","exer","exer_dur"));
 
         LeaderModel m = new LeaderModel();
-        DefaultTableModel defTab = m.getWorkouts(u,this);
+        ArrayList<ArrayList<String>> friendWorkouts = m.getFriendWorkouts(u,this);
+        ArrayList<ArrayList<String>> workouts = m.getOwnWorkouts(u,this);
+        DefaultTableModel defTab = new DefaultTableModel();
+
+        for (int i = 0; i < columnNames.size(); i++){
+            defTab.addColumn(columnNames.get(i));
+        }
+
+        for (int i = 0; i < workouts.size(); i++){
+            Vector row = new Vector();
+            row.add(u);
+            for(int j = 0; j<workouts.get(i).size(); j++){
+                row.add(workouts.get(i).get(j));
+            }
+            defTab.addRow(row);
+        }
+
+        for (int i = 0; i < friendWorkouts.size(); i++){
+            Vector row = new Vector();
+            for(int j = 0; j<friendWorkouts.get(i).size(); j++){
+                row.add(friendWorkouts.get(i).get(j));
+            }
+            defTab.addRow(row);
+        }
 
         JTable tab = new JTable(); //adding table
         tab.setModel(defTab);

@@ -29,7 +29,8 @@ public class Create_Profile {
                     String username = f.username.getText();
                     if (!Objects.equals(f.username.getText(), "") && !Objects.equals(f.password.getText(), "")){
                         System.out.println(f.username.getText());
-                        user.addUser(f.username.getText(),f.password.getText());
+                        User newUser = new User(f.username.getText(), f.password.getText());
+                        user.addUser(newUser);
                         workoutModel.createWorkoutsList(f.username.getText());
                         friendsMain.createFriendsList(username);
                         System.out.println("enter pressed");
@@ -40,13 +41,7 @@ public class Create_Profile {
                     else{
                         System.out.println("please enter a valid password");
                     }
-
-
                 }
-
-
-
-
             }
         });
 

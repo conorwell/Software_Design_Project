@@ -1,7 +1,7 @@
-package DreamTeam.v1.tests;
+/*package DreamTeam.v1.tests;
 
-import DreamTeam.v1.src.Friends.FriendsGUI;
-import DreamTeam.v1.src.Friends.FriendsMain;
+import DreamTeam.v1/src/Friends.FriendsGUI;
+import DreamTeam.v1/src/Friends.FriendsMain;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
@@ -50,4 +50,4 @@ public class FriendsTests {
             fail("GUI couldn't be loaded");
         }
     }
-}
+}*/

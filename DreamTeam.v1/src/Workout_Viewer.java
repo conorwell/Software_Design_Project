@@ -14,11 +14,12 @@ public class Workout_Viewer extends JFrame implements ActionListener {
 
     private String usernam;
     private ArrayList<ArrayList<String>> data;
+    JFrame fe;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
     Workout_Model workoutModel = new Workout_Model();
     public Workout_Viewer(String u){
         this.usernam = u;
-        JFrame fe = new JFrame("Workout Viewer");
+         fe = new JFrame("Workout Viewer");
         fe.setDefaultCloseOperation(2); //closes when you press x
         fe.setTitle("Workout Viewer"); //Title of window
         fe.setLayout(new GridBagLayout());
@@ -35,7 +36,6 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         Load_Profile lp = new Load_Profile();
 
         //table and file
-        File workouts = new File("workouts.csv"); //creating file to read from
         DefaultTableModel defTab = new DefaultTableModel(){ //creating table model
             @Override
             public boolean isCellEditable(int row, int column) { //declaring table is not editable
@@ -45,7 +45,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         };
 
         try{
-            data = workoutModel.getWorkouts("username"); //need to get active username
+            data = workoutModel.getWorkouts(u); //need to get active username
 
             for(int i = 0; i<data.size(); i++){
                 Vector row = new Vector();

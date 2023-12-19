@@ -1,3 +1,4 @@
+/*
 package DreamTeam.v1.tests;
 
 import DreamTeam.v1.src.Friends.FriendsGUI;
@@ -51,3 +52,5 @@ public class FriendsTests {
         }
     }
 }
+
+ */

@@ -7,7 +7,8 @@ import java.util.Calendar;
 //I have altered it to fit into the project
 //https://stackoverflow.com/questions/26794698/how-do-i-implement-jdatepicker
 public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
-
+    //No tests made for this class because no methods are used.
+    //Date pattern instance variable is needed
     private String datePattern = "yyyy-MM-dd";
     private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 

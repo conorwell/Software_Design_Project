@@ -2,6 +2,7 @@ package Network;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class NetworkDriver {
     public Connection network;
@@ -12,27 +13,17 @@ public class NetworkDriver {
 
     public void startUp() {
         try {Class.forName("com.mysql.cj.jdbc.Driver");
-            network = DriverManager.getConnection("jdbc:mysql://localhost:8889/dreamteamv1",
-                    "root", "root"); //this is to connect to master network
-                                                            //requires user authentication + same wifi
-            //network = DriverManager.getConnection("jdbc:mysql://localhost:8889/yourDataBaseNameHere,
-                    //"root", "root"); //this is test with a locally created mamp database
+            network = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:8889/dreamteamv1", "root", "root");
+                                //Connection steps:
+                                //establish a new DB browser connection at host:localhost, username:root, password:root
+                                //replace '8889' with your port if not connecting through mamp (in both connection and code above)
+                                //replace 'dreamteamv1' with your local database name
+            Statement createStatement = network.createStatement();
+            createStatement.executeUpdate("create table if not exists UserTable (username varchar(50),password varchar(50));");
         }catch(Exception e){
             System.out.println(e);
-            //TODO: handle failure to connect to network
+            System.exit(2);
         }
     }
-
-    //public static void main(String[] args) {
-        //NetworkDriver networkConnection = new NetworkDriver();
-        //networkConnection.startUp();
-        //UserbaseNetwork userNetwork = new UserbaseNetwork(networkConnection.network);
-        //userNetwork.createUser("Test","test");
-        //userNetwork.userList();
-        //userNetwork.checkLogin("Test","test");
-        //userNetwork.deleteUser("Test");
-        //userNetwork.checkLogin("Test","test");
-        //userNetwork.checkLogin("Admin","reee");
-        //userNetwork.checkLogin("Guest","guest");
-        //userNetwork.userList();}
 }

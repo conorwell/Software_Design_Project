@@ -59,7 +59,8 @@ public class homeController {
 
                 if (s.equals("View Workouts")) {
                     System.out.println("add workout screen requested");
-                    Workout_Viewer wv = new Workout_Viewer(username);
+                    Workout_Viewer_Controller w = new Workout_Viewer_Controller();
+                    w.addData(username);
                 }
             }
         });

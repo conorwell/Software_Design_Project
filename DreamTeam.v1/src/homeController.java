@@ -59,7 +59,8 @@ public class homeController {
 
                 if (s.equals("View Workouts")) {
                     System.out.println("add workout screen requested");
-                    Workout_Viewer wv = new Workout_Viewer(username);
+                    Workout_Viewer_Controller w = new Workout_Viewer_Controller();
+                    w.addData(username);
                 }
             }
         });
@@ -88,6 +89,21 @@ public class homeController {
                 }
             }
         });
+
+
+        home.logout.addActionListener(new AbstractAction()  {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String s = actionEvent.getActionCommand();
+                if (s.equals("Logout")) {
+                    System.out.println("logout requested");
+                    home.f.dispose();
+                    Load_Profile load = new Load_Profile();
+                    load.login();
+                }
+            }
+        });
+
 
     }
 }

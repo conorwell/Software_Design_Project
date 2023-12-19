@@ -15,7 +15,9 @@ public final class User_Model {
     }
     NetworkDriver networkDriver = new NetworkDriver();
 
-    public void addUser(String username, String password){
+    public void addUser(User user){
+        String username = user.getUsername();
+        String password = user.getPassword();
         try {
             Statement createStatement = networkDriver.network.createStatement();
             createStatement.executeUpdate("insert into UserTable values ('" + username + "','" + password + "')");
@@ -25,7 +27,7 @@ public final class User_Model {
     }
 
 
-    public List<List<String>> getUsers(String filePath) {
+    public List<List<String>> getUsers() {
         List<List<String>> users_array = new ArrayList<>();
         try {
             Statement searchStatement = networkDriver.network.createStatement();
@@ -77,35 +79,10 @@ public final class User_Model {
 
 
 
-    public void editUser(String oldPassword, String oldUser, String newPassword, String newUser, String filePath) {
+    public void editUser(String oldUser, String newPassword, String newUser) {
         //create list of users
-        List<List<String>> users = getUsers(filePath);
-
-        //find user being edited, change entry in ArrayList
-        for(int i =0; i<users.size();i++){
-            if(users.get(i).get(0).equals(oldUser) && users.get(i).get(1).equals(oldPassword)){
-                users.get(i).set(0,newUser);
-                users.get(i).set(1,newPassword);
-            }
-        }
-        //write edited list to csv file
-        File userFile = new File(filePath);
-        try{
-            // create FileWriter object with file as parameter
-            FileWriter writer = new FileWriter(userFile);
-
-            // add data to csv
-            if(users.size() > 0) {
-                for (int i = 0; i < users.size(); i++) {
-                    writer.write(users.get(i).get(0) + "," + users.get(i).get(1) + "\n");
-                }
-            }
-            // closing writer connection
-            writer.close();
-        }
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        deleteUser(oldUser);
+        User editedUser = new User(newUser,newPassword);
+        addUser(editedUser);
     }
 }

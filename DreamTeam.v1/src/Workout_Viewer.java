@@ -13,13 +13,17 @@ import java.util.Vector;
 public class Workout_Viewer extends JFrame implements ActionListener {
 
     private String usernam;
-    private ArrayList<ArrayList<String>> data;
     JFrame fe;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
-    Workout_Model workoutModel = new Workout_Model();
-    public Workout_Viewer(String u){
+    Workout_Model workoutModel = Workout_Model.getInstance();
+    DefaultTableModel defTab = new DefaultTableModel(); //creating table model
+    JButton edit = new JButton();
+    JTable tab = new JTable();
+    //Workout_Viewer_Controller wc = new Workout_Viewer_Controller();
+    public void Workout_Viewer_Run(String u){
         this.usernam = u;
-         fe = new JFrame("Workout Viewer");
+
+        fe = new JFrame("Workout Viewer");
         fe.setDefaultCloseOperation(2); //closes when you press x
         fe.setTitle("Workout Viewer"); //Title of window
         fe.setLayout(new GridBagLayout());
@@ -33,10 +37,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         fe.add(title, gbc);
 
 
-        Load_Profile lp = new Load_Profile();
-
-        //table and file
-        DefaultTableModel defTab = new DefaultTableModel(){ //creating table model
+        defTab = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) { //declaring table is not editable
                 //all cells false
@@ -44,29 +45,10 @@ public class Workout_Viewer extends JFrame implements ActionListener {
             }
         };
 
-        try{
-            data = workoutModel.getWorkouts(u); //need to get active username
 
-            for(int i = 0; i<data.size(); i++){
-                Vector row = new Vector();
-                for(int j = 0; j<data.get(i).size(); j++){
-                    if(i==0){
-                        defTab.addColumn(data.get(i).get(j));
-                    }else{
-                            row.add(data.get(i).get(j));
-                    }
-                }
-                //if(i!= 0){
-                    defTab.addRow(row); //adding data to table
-                //}
+        //wc.addData(usernam);
 
-            }
-
-        }catch(Exception e){
-            System.out.println("It was this");
-        }
-
-        JTable tab = new JTable(); //adding table
+        tab = new JTable(); //adding table
         tab.setModel(defTab);
         fe.add(tab);
 
@@ -78,7 +60,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
         fe.add(scroll,gbc);
 
 
-        JButton edit = new JButton("Edit Workout"); //edit workkout button
+        edit = new JButton("Edit Workout"); //edit workkout button
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -86,23 +68,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
 
         fe.add(edit, gbc);
 
-        edit.addActionListener( //action listner for button
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        if(e.getSource()==edit && tab.getSelectedRow() != -1){
-                            int row = tab.getSelectedRow();
-                            String value = tab.getModel().getValueAt(row, 4).toString();
-                            String com = tab.getModel().getValueAt(row, 2).toString();
-                            String nam = tab.getModel().getValueAt(row, 1).toString();
-                            Edit_Workout_Controller ed = new Edit_Workout_Controller();
-                            ed.editListen(value, com, nam, usernam);
-                            fe.dispose();
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Please select the workout you wish to edit");
-                        }
-                    }
-                }
-        );
+
         fe.pack();
         fe.setLocationRelativeTo(null);
         fe.setVisible(true);

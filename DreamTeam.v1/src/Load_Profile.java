@@ -6,7 +6,7 @@ public class Load_Profile {
 
     DisplayLogin f= new DisplayLogin();
     homeController h = new homeController();
-    User_Model user = new User_Model();
+    User_Model user = User_Model.getInstance();
     private String globUser;
 
     public void login(){

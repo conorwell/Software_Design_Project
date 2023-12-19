@@ -96,7 +96,7 @@ public class homeController {
                 if (s.equals("Stats")) {
                     System.out.println("stats screen requested");
                     statsController statistics = new statsController();
-                    statistics.viewStats(username);
+                    statistics.viewStats(u.getUsername());
                 }
             }
         });

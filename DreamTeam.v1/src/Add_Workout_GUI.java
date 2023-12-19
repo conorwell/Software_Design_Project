@@ -30,7 +30,9 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
 
     public void Add_Workout_GUI(String user) {
+        //f.setVisible(false);
         this.username = user;
+        f = new JFrame();
 
         //creating JFRAME
 

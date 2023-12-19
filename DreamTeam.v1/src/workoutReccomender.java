@@ -10,7 +10,7 @@ public class workoutReccomender {
     public String reccomend(String username){
 
         workoutReccomender wr = new workoutReccomender();
-        Workout_Model model = new Workout_Model();
+        Workout_Model model = Workout_Model.getInstance();
         ArrayList<ArrayList<String>> workouts = model.getWorkouts(username); //changed from list for integration
         ArrayList<String> recent = workouts.get(workouts.size()-1);
         String prompt = "Here was my last workout, complete with the name I assigned it, comments regarding it, and " +

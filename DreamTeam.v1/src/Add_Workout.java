@@ -18,7 +18,7 @@ public class Add_Workout {
     //method that constructs an array list and returns it from the data from the gui
     public Workout addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
         WorkoutBuilder newWork = new WorkoutBuilder_Concrete();
-        Workout_Model wm = new Workout_Model();
+        Workout_Model wm = Workout_Model.getInstance();
         wm.addWorkouts(newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date));
         return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }

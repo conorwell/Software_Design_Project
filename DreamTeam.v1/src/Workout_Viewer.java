@@ -15,7 +15,7 @@ public class Workout_Viewer extends JFrame implements ActionListener {
     private String usernam;
     JFrame fe;
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
-    Workout_Model workoutModel = new Workout_Model();
+    Workout_Model workoutModel = Workout_Model.getInstance();
     DefaultTableModel defTab = new DefaultTableModel(); //creating table model
     JButton edit = new JButton();
     JTable tab = new JTable();

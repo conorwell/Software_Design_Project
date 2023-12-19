@@ -10,8 +10,8 @@ public class Create_Profile {
 
     DisplayCreateProfile f= new DisplayCreateProfile();
     Load_Profile l = new Load_Profile();
-    User_Model user = new User_Model();
-    Workout_Model workoutModel = new Workout_Model();
+    User_Model user = User_Model.getInstance();
+    Workout_Model workoutModel = Workout_Model.getInstance();
     FriendsMain friendsMain = new FriendsMain();
 
     public void create(){

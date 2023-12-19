@@ -1,7 +1,7 @@
-public class LeaderBoardController {
+public class LeaderBoardController implements SubjectInterface{
     LeaderBoardGUI f = new LeaderBoardGUI();
 
-    public void leaderboard(String u){
+    public void leaderboard(User u){
         f.init(u);
     }
 }

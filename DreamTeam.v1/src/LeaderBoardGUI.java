@@ -11,7 +11,7 @@ public class LeaderBoardGUI {
     GridBagConstraints gbc = new GridBagConstraints(); //Layout for gui
     public ArrayList<ArrayList<String>> data;
 
-    public void init(String u){
+    public void init(User u){
         //f.setSize(400,500);
         f.setLayout(new GridBagLayout());
         gbc.insets =new Insets(5,5,5,5);
@@ -25,8 +25,9 @@ public class LeaderBoardGUI {
         ArrayList<String> columnNames = new ArrayList<String>(Arrays.asList("user","name","com","dur","date","exer","exer_dur"));
 
         LeaderModel m = new LeaderModel();
-        ArrayList<ArrayList<String>> friendWorkouts = m.getFriendWorkouts(u,this);
-        ArrayList<ArrayList<String>> workouts = m.getOwnWorkouts(u,this);
+        ArrayList<ArrayList<String>> friendWorkouts = m.getFriendWorkouts(u.getUsername(),this);
+        System.out.println(friendWorkouts);
+        ArrayList<ArrayList<String>> workouts = m.getOwnWorkouts(u.getUsername(),this);
         DefaultTableModel defTab = new DefaultTableModel();
 
         for (int i = 0; i < columnNames.size(); i++){
@@ -35,7 +36,7 @@ public class LeaderBoardGUI {
 
         for (int i = 0; i < workouts.size(); i++){
             Vector row = new Vector();
-            row.add(u);
+            row.add(u.getUsername());
             for(int j = 0; j<workouts.get(i).size(); j++){
                 row.add(workouts.get(i).get(j));
             }

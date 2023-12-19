@@ -24,7 +24,7 @@ public class LeaderModel {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(friendsList);
+        //System.out.println(friendsList);
         return friendsList;
     }
 
@@ -65,7 +65,7 @@ public class LeaderModel {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(userWorkouts);
+        //System.out.println(userWorkouts);
         return userWorkouts;
     }
 
@@ -77,19 +77,21 @@ public class LeaderModel {
 
 
         ArrayList<ArrayList<String>> userWorkouts = new ArrayList<>();
-        ArrayList<String> workout = new ArrayList<>();
+
         try {
-            Statement getWorkoutStatement = networkDriver.network.createStatement();
+
             for (int i=0;i<friends.size();i++){
+                Statement getWorkoutStatement = networkDriver.network.createStatement();
                 ResultSet workoutSet = getWorkoutStatement.executeQuery("select * from "+friends.get(i)+"workouts where exercise is null;");
                 while (workoutSet.next()) {
+                    ArrayList<String> workout = new ArrayList<>();
                     workout.add(friends.get(i));
                     workout.add(workoutSet.getString("name"));
                     workout.add(workoutSet.getString("comment"));
                     workout.add(workoutSet.getString("total_duration"));
                     workout.add(workoutSet.getString("date"));
                     Statement getExerciseStatement = networkDriver.network.createStatement();
-                    ResultSet exerciseSet = getExerciseStatement.executeQuery("select * from "+u+"workouts where exercise is not null and name='"+workout.get(0)+"';");
+                    ResultSet exerciseSet = getExerciseStatement.executeQuery("select * from "+friends.get(i)+"workouts where exercise is not null and name='"+workout.get(1)+"';");
                     while (exerciseSet.next()) {
                         workout.add(exerciseSet.getString("exercise"));
                         workout.add(exerciseSet.getString("exercise_duration"));

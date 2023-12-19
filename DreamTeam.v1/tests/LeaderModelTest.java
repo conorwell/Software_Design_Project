@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LeaderModelTest {
@@ -19,8 +20,13 @@ public class LeaderModelTest {
     void testWorkouts(){
         LeaderModel l = new LeaderModel();
         LeaderBoardGUI g = new LeaderBoardGUI();
-        DefaultTableModel workouts = l.getWorkouts("sebolson",g);
-        assertEquals(workouts.getRowCount(),2);
+        ArrayList<ArrayList<String>> userWorkouts;
+        userWorkouts = l.getOwnWorkouts("sebolson",g);
+        assertFalse(userWorkouts.isEmpty());
+
+        ArrayList<ArrayList<String>> friendWorkouts;
+        friendWorkouts = l.getFriendWorkouts("sebolson",g);
+        assertFalse(friendWorkouts.isEmpty());
 
     }
 

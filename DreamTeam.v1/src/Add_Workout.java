@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,14 +17,15 @@ public class Add_Workout {
 
     //method that constructs an array list and returns it from the data from the gui
     public Workout addExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
-        WorkoutBuilder_Concrete newWork = new WorkoutBuilder_Concrete();
+        WorkoutBuilder newWork = new WorkoutBuilder_Concrete();
         return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
     public Workout editExercise(String user, String wrkName, String comment, String date, ArrayList<String> exerc, ArrayList<String> exerDur) {
 
-        WorkoutBuilder_Concrete newWork = new WorkoutBuilder_Concrete();
+        WorkoutBuilder newWork = new WorkoutBuilder_Concrete();
         return newWork.workoutBuilder(user,wrkName,exerc,exerDur,comment,date);
     }
+
 
     public void guiController(String username){
         addGUI.Add_Workout_GUI("");
@@ -63,6 +65,7 @@ public class Add_Workout {
                             String dateString = datedate.toString();
                             add.addExercise(username,workName,comment, dateString,exerciseArr,durationArr);//logic for
                             addGUI.f.dispose();
+
                             JOptionPane.showMessageDialog(null, "Workout Completed :)");
                         } else{
                             JOptionPane.showMessageDialog(null, "Please complete all fields and try again");

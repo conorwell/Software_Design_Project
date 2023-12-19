@@ -8,7 +8,8 @@ public class LeaderBoardGUITest {
     @Test
     void init(){
         LeaderBoardGUI leader = new LeaderBoardGUI();
-        leader.init("sebolson");
+        User user = new User("sebolson", "password");
+        leader.init(user);
         assertTrue(leader.f.isVisible());
 
 

@@ -41,9 +41,9 @@ public class Workout_Viewer_Controller {
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource() == wv.edit && wv.tab.getSelectedRow() != -1) {
                             int row = wv.tab.getSelectedRow();
-                            String value = wv.tab.getModel().getValueAt(row, 4).toString();
-                            String com = wv.tab.getModel().getValueAt(row, 2).toString();
-                            String nam = wv.tab.getModel().getValueAt(row, 1).toString();
+                            String value = wv.tab.getModel().getValueAt(row, 3).toString();
+                            String com = wv.tab.getModel().getValueAt(row, 1).toString();
+                            String nam = wv.tab.getModel().getValueAt(row, 0).toString();
                             Edit_Workout_Controller ed = new Edit_Workout_Controller();
                             ed.editListen(value, com, nam, username);
                             wv.fe.dispose();

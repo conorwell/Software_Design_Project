@@ -6,7 +6,7 @@ public class Load_Profile {
 
     DisplayLogin f= new DisplayLogin();
     homeController h = new homeController();
-    User_Model user = new User_Model();
+    User_Model user = User_Model.getInstance();
     private String globUser;
 
     public void login(){
@@ -19,10 +19,10 @@ public class Load_Profile {
                 String s = actionEvent.getActionCommand();
 
                 if (s.equals("Enter")) {
-                    boolean approver = user.approveUser(f.username.getText(), f.password.getText(), "users.csv");
+                    boolean approver = user.approveUser(f.username.getText(), f.password.getText());
                     if (approver){
-                        String user = f.username.getText();
-                        globUser = user;
+                        User user = new User(f.username.getText(),f.password.getText());
+                        globUser = user.getUsername();
                         System.out.println("welcome " + f.username.getText());
 
 
@@ -33,6 +33,7 @@ public class Load_Profile {
                     }
                     else{
                         System.out.println("please enter a valid password");
+                        JOptionPane.showMessageDialog(null,"Incorrect username or password","Error",JOptionPane.ERROR_MESSAGE);
                     }
 
 

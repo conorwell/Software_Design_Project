@@ -8,9 +8,11 @@ import java.io.*;
 import java.util.*;
 
 public class FriendsGUI extends JFrame implements ActionListener {
+    FriendsMain friendsMain = new FriendsMain();
+    boolean friendsTableVisible;
     public FriendsGUI(String user){
         GridBagConstraints gbc = new GridBagConstraints();
-        JFrame friendsFrame = new JFrame("DreamTeam.v1.src.Friends List");
+        JFrame friendsFrame = new JFrame("Friends List");
         friendsFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         friendsFrame.setLayout(new GridBagLayout());
         gbc.insets =new Insets(5,5,5,5);
@@ -36,7 +38,7 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 if(e.getSource()==addButton){
                     String userToAdd = (JOptionPane.showInputDialog(null, "Enter a user to add as a friend:","Add Friend",JOptionPane.INFORMATION_MESSAGE));
                     System.out.println(userToAdd);
-                    int requestSent = FriendsMain.sendRequest(user,userToAdd);
+                    int requestSent = friendsMain.sendRequest(user,userToAdd);
                     switch((Integer) requestSent){
                         case 0:JOptionPane.showMessageDialog(null,"Sent friend request to "+userToAdd+".","Success",JOptionPane.INFORMATION_MESSAGE);break;
                         case 1:JOptionPane.showMessageDialog(null,"Error: You are already friends with this user.","Error",JOptionPane.ERROR_MESSAGE);break;
@@ -46,19 +48,18 @@ public class FriendsGUI extends JFrame implements ActionListener {
                     }
                 }}});
 
-        File friendsList = new File("./FriendsLists/"+user+"_Friends.csv");
         DefaultTableModel friendsModel = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {return false;}};
         int friendCount=0; int requestCount=0;
         try{ArrayList<String> friendsArray = new ArrayList<>();
             ArrayList<String> requestsArray = new ArrayList<>();
-            Scanner senderListReader = new Scanner(friendsList);
-            friendsModel.addColumn("<html><b>DreamTeam.v1.src.Friends:</b></html>");
+            friendsModel.addColumn("<html><b>Friends:</b></html>");
             friendsModel.addColumn("<html><b>Requests:</b></html>");
             ArrayList<Vector> rows = new ArrayList<>();
-            while (senderListReader.hasNextLine()) {
-                String[] currentLine = senderListReader.nextLine().split(",");
+            ArrayList<String> friendsData = friendsMain.getFriendsList(user);
+            for(int i = 0;i<friendsData.size();i++) {
+                String[] currentLine = friendsData.get(i).split(",");
                 String friendName = currentLine[0];
                 String friendStatus = currentLine[1];
                 if (friendStatus.equals("friends")) {
@@ -75,7 +76,11 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 try{vector.add(requestsArray.get(i));}catch(IndexOutOfBoundsException e){vector.add(" ");}
                 friendsModel.addRow(vector);
             }
-        }catch(FileNotFoundException e){System.out.println("Table couldn't be created");}
+            friendsTableVisible = true;
+        }catch(Exception e){
+            System.out.println("Table couldn't be created");
+            friendsTableVisible = false;
+        }
         JTable friendsTable = new JTable();
         friendsTable.setModel(friendsModel);
         friendsFrame.add(friendsTable);
@@ -96,28 +101,22 @@ public class FriendsGUI extends JFrame implements ActionListener {
                         Object answer = JOptionPane.showOptionDialog(null, friendsTable.getValueAt(row,column)+" sent you a friend request.",
                                 "Friend Request", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, requestButtons, requestButtons[0]);
                         switch ((Integer) answer){
-                            case 0:FriendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
-                                System.out.println("Table wont update so will have to load to main screen then back in");
+                            case 0:friendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
                                 friendsFrame.setVisible(false);
-                                FriendsGUI refreshGUI = new FriendsGUI(user);
+                                FriendsGUI acceptRefreshGUI = new FriendsGUI(user);
+                            case 1:friendsMain.denyRequest(user,friendsTable.getValueAt(row,column).toString());
+                                friendsFrame.setVisible(false);
+                                FriendsGUI denyRefreshGUI = new FriendsGUI(user);
                     }}}}});
 
         JScrollPane scroll = new JScrollPane();
         scroll.getViewport().add(friendsTable);
         gbc.gridx = 0;gbc.gridy = 1;gbc.gridwidth = 3;
         friendsFrame.add(scroll,gbc);
-
-        //friendsFrame.setPreferredSize(new Dimension(500,550));
         friendsFrame.pack();
         friendsFrame.setLocationRelativeTo(null);
         friendsFrame.setVisible(true);
     }
-
-
-    public static void main(String[] args) {
-        FriendsGUI f = new FriendsGUI("guest");
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {}
 }

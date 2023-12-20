@@ -20,6 +20,15 @@ public class FriendsMain {
         }
     }
 
+    public void deleteFriendsList(String username) {
+        try {
+            Statement createStatement = networkDriver.network.createStatement();
+            createStatement.executeUpdate("drop table "+username+"friends;");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public ArrayList getFriendsList(String username) {
         ArrayList<String> friendsList = new ArrayList<>();
         try {
@@ -37,7 +46,10 @@ public class FriendsMain {
 
 
     public int sendRequest(String sendingUser,String recievingUser) {
-        try{Statement requestStatement = networkDriver.network.createStatement();
+        try{if(sendingUser.equals(recievingUser)){
+                return 1;
+                }
+            Statement requestStatement = networkDriver.network.createStatement();
             ResultSet userSet = requestStatement.executeQuery("select * from "+sendingUser+"friends");
             while (userSet.next()) {
                 if (recievingUser.equals(userSet.getString("username"))) {
@@ -78,6 +90,7 @@ public class FriendsMain {
         }catch(Exception e){
             System.out.println(e);
         }}
+
 
 }
 

@@ -20,6 +20,15 @@ public class FriendsMain {
         }
     }
 
+    public void deleteFriendsList(String username) {
+        try {
+            Statement createStatement = networkDriver.network.createStatement();
+            createStatement.executeUpdate("drop table "+username+"friends;");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public ArrayList getFriendsList(String username) {
         ArrayList<String> friendsList = new ArrayList<>();
         try {
@@ -81,6 +90,7 @@ public class FriendsMain {
         }catch(Exception e){
             System.out.println(e);
         }}
+
 
 }
 

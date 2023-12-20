@@ -9,6 +9,7 @@ import java.util.*;
 
 public class FriendsGUI extends JFrame implements ActionListener {
     FriendsMain friendsMain = new FriendsMain();
+    boolean friendsTableVisible;
     public FriendsGUI(String user){
         GridBagConstraints gbc = new GridBagConstraints();
         JFrame friendsFrame = new JFrame("Friends List");
@@ -47,7 +48,6 @@ public class FriendsGUI extends JFrame implements ActionListener {
                     }
                 }}});
 
-        File friendsList = new File("./FriendsLists/"+user+"_Friends.csv");
         DefaultTableModel friendsModel = new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {return false;}};
@@ -76,7 +76,11 @@ public class FriendsGUI extends JFrame implements ActionListener {
                 try{vector.add(requestsArray.get(i));}catch(IndexOutOfBoundsException e){vector.add(" ");}
                 friendsModel.addRow(vector);
             }
-        }catch(Exception e){System.out.println("Table couldn't be created");}
+            friendsTableVisible = true;
+        }catch(Exception e){
+            System.out.println("Table couldn't be created");
+            friendsTableVisible = false;
+        }
         JTable friendsTable = new JTable();
         friendsTable.setModel(friendsModel);
         friendsFrame.add(friendsTable);
@@ -109,18 +113,10 @@ public class FriendsGUI extends JFrame implements ActionListener {
         scroll.getViewport().add(friendsTable);
         gbc.gridx = 0;gbc.gridy = 1;gbc.gridwidth = 3;
         friendsFrame.add(scroll,gbc);
-
-        //friendsFrame.setPreferredSize(new Dimension(500,550));
         friendsFrame.pack();
         friendsFrame.setLocationRelativeTo(null);
         friendsFrame.setVisible(true);
     }
-
-
-    public static void main(String[] args) {
-        FriendsGUI f = new FriendsGUI("guest");
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {}
 }

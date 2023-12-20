@@ -99,7 +99,10 @@ public class FriendsGUI extends JFrame implements ActionListener {
                         switch ((Integer) answer){
                             case 0:friendsMain.acceptRequest(user,friendsTable.getValueAt(row,column).toString());
                                 friendsFrame.setVisible(false);
-                                FriendsGUI refreshGUI = new FriendsGUI(user);
+                                FriendsGUI acceptRefreshGUI = new FriendsGUI(user);
+                            case 1:friendsMain.denyRequest(user,friendsTable.getValueAt(row,column).toString());
+                                friendsFrame.setVisible(false);
+                                FriendsGUI denyRefreshGUI = new FriendsGUI(user);
                     }}}}});
 
         JScrollPane scroll = new JScrollPane();

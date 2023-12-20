@@ -40,6 +40,7 @@ public class Create_Profile {
                     }
                     else{
                         System.out.println("please enter a valid password");
+                        JOptionPane.showMessageDialog(null,"Please enter a valid password","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }

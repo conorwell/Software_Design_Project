@@ -71,8 +71,8 @@ public final class Workout_Model {
             addStatement.executeUpdate("insert into "+username+"workouts (name,comment,total_duration,date) values " +
                     "('"+workoutName+"','"+comment+"','"+totalDuration+"','"+date+"');");
             for (int i = 0; i < exercises.size(); i++) {
-                addStatement.executeUpdate("insert into "+username+"workouts (name,exercise,exercise_duration) values" +
-                        " ('"+workoutName+"','"+exercises.get(i)+"','"+durations.get(i)+"');");
+                addStatement.executeUpdate("insert into "+username+"workouts (name,date,exercise,exercise_duration) values" +
+                        " ('"+workoutName+"','"+date+"','"+exercises.get(i)+"','"+durations.get(i)+"');");
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block

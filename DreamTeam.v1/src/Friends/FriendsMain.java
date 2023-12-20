@@ -37,7 +37,10 @@ public class FriendsMain {
 
 
     public int sendRequest(String sendingUser,String recievingUser) {
-        try{Statement requestStatement = networkDriver.network.createStatement();
+        try{if(sendingUser.equals(recievingUser)){
+                return 1;
+                }
+            Statement requestStatement = networkDriver.network.createStatement();
             ResultSet userSet = requestStatement.executeQuery("select * from "+sendingUser+"friends");
             while (userSet.next()) {
                 if (recievingUser.equals(userSet.getString("username"))) {

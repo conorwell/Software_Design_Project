@@ -36,7 +36,7 @@ public class Add_Workout_GUI extends JFrame implements ActionListener {
 
         //creating JFRAME
 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes when you press x
+        f.setDefaultCloseOperation(2); //closes when you press x
         f.setTitle("Add Workout"); //Title of window
         f.setLayout(new GridBagLayout());
 

@@ -18,6 +18,14 @@ public class statsViewer {
             desc.setEditable(false);
             f.add(desc);
 
+            defTab = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) { //declaring table is not editable
+                    //all cells false
+                    return false;
+                }
+            };
+
             tab = new JTable(); //adding table
             tab.setModel(defTab);
             f.add(tab);

@@ -29,6 +29,13 @@ public class LeaderBoardGUI {
         System.out.println(friendWorkouts);
         ArrayList<ArrayList<String>> workouts = m.getOwnWorkouts(u.getUsername(),this);
         DefaultTableModel defTab = new DefaultTableModel();
+        defTab = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) { //declaring table is not editable
+                //all cells false
+                return false;
+            }
+        };
 
         for (int i = 0; i < columnNames.size(); i++){
             defTab.addColumn(columnNames.get(i));
@@ -50,6 +57,7 @@ public class LeaderBoardGUI {
             }
             defTab.addRow(row);
         }
+
 
         JTable tab = new JTable(); //adding table
         tab.setModel(defTab);

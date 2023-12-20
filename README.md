@@ -9,5 +9,5 @@ Problem: In today's world, it has become increasingly simple to stay entertained
 
 Dependencies:
 
-This project uses JDatePicker and mysql-connector-8.1.0.jar, both of which are in the lib folder. Additionally, this project is designed to use the 'mysql' database run on localhost, port 8889
+This project uses JDatePicker and mysql-connector-8.1.0.jar, both of which are in the lib folder. Additionally, this project is designed to use the 'mysql' database run on localhost, port 8889. If you need to change the port or database, the code is in the Network.NetworkDriver class in src.
 
